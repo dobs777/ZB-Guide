@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Guias Oficiais - ZUMBAS LATAM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2d3748;
+            --secondary: #1a202c;
+            --accent: #4299e1;
+            --text: #e2e8f0;
+            --text-light: #a0aec0;
+            --card-bg: rgba(45, 55, 72, 0.7);
+            --border: #4a5568;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --danger: #f56565;
+            --alien: #9f7aea;
+            --gold: #fbbf24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Layout Principal */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: rgba(15, 23, 42, 0.95);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .server-logo {
+            max-width: 100%;
+            max-height: 120px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .server-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .server-name {
+            color: var(--accent);
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 5px;
+            margin-top: 15px;
+        }
+
+        .server-tagline {
+            font-size: 14px;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+
+        /* Conteúdo Principal */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 30px;
+            max-width: 1400px;
+        }
+
+        /* Cabeçalho do Guia */
+        .guide-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .header-image {
+            flex: 0 0 300px;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .header-image:hover {
+            transform: scale(1.02);
+        }
+
+        .header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .header-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        .guide-badge {
+            display: inline-block;
+            background: rgba(66, 153, 225, 0.2);
+            color: var(--accent);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(66, 153, 225, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .guide-title {
+            font-size: 46px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: white;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .guide-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 800px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Seções do Guia */
+        .guide-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(to right, var(--accent), transparent) 1;
+        }
+
+        .section-icon {
+            font-size: 32px;
+            margin-right: 20px;
+            color: var(--accent);
+            background: rgba(66, 153, 225, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+
+        /* Layout de NPCs Aprimorado */
+        .npc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .npc-item {
+            display: flex;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-height: 320px;
+            position: relative;
+        }
+
+        .npc-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .npc-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .npc-item:hover::before {
+            opacity: 1;
+        }
+
+        /* AUMENTO DO TAMANHO DO CONTAINER DA IMAGEM EM 1.3x */
+        .npc-image-container {
+            flex: 0 0 364px; /* 280px * 1.3 = 364px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px; /* Aumentado proporcionalmente */
+            background: rgba(15, 23, 42, 0.7);
+            position: relative;
+        }
+
+        /* AUMENTO DO TAMANHO DA IMAGEM EM 1.3x */
+        .npc-image {
+            width: 234px; /* 180px * 1.3 = 234px */
+            height: 351px; /* 270px * 1.3 = 351px */
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .npc-item:hover .npc-image {
+            transform: scale(1.05);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px rgba(66, 153, 225, 0.2);
+        }
+
+        .npc-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .npc-content {
+            flex: 1;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .npc-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .npc-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .npc-role {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent) 0%, #3182ce 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+        }
+
+        .npc-description {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .npc-features {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .npc-features ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .npc-features li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .npc-features li::marker {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Cards de Informação */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .info-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+
+        .info-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .info-card:hover::after {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--accent);
+            background: rgba(66, 153, 225, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+
+        .card-content {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .card-content ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .card-content li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        /* Alertas Estilizados */
+        .alert {
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.15), rgba(66, 153, 225, 0.05));
+            border-left: 5px solid var(--accent);
+            border-right: 1px solid rgba(66, 153, 225, 0.2);
+            border-top: 1px solid rgba(66, 153, 225, 0.1);
+            border-bottom: 1px solid rgba(66, 153, 225, 0.1);
+        }
+
+        .alert-icon {
+            font-size: 24px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .alert.alert-warning {
+            background: linear-gradient(135deg, rgba(237, 137, 54, 0.15), rgba(237, 137, 54, 0.05));
+            border-left: 5px solid var(--warning);
+            border-color: rgba(237, 137, 54, 0.2);
+        }
+
+        .alert.alert-warning .alert-icon {
+            color: var(--warning);
+        }
+
+        /* Seção de Economia */
+        .economy-section {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(251, 191, 36, 0.05));
+            border: 2px solid rgba(251, 191, 36, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .economy-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--gold), transparent);
+        }
+
+        .economy-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .economy-icon {
+            font-size: 40px;
+            color: var(--gold);
+            background: rgba(251, 191, 36, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .economy-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--gold);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .money-display {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .money-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .money-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .money-image {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid rgba(251, 191, 36, 0.3);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.15);
+            background: rgba(15, 23, 42, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .money-image:hover {
+            transform: scale(1.05);
+        }
+
+        .money-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .money-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-top: 10px;
+        }
+
+        .money-description {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 5px;
+            max-width: 200px;
+        }
+
+        /* LIGHTBOX / MODAL PARA AS IMAGENS - CORRIGIDO COMPLETAMENTE */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.98);
+            animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Container da imagem no lightbox */
+        .lightbox-image-container {
+            max-width: 90%;
+            max-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 80px; /* Espaço para a legenda */
+            position: relative;
+        }
+
+        /* Imagem no lightbox - CORREÇÃO DAS BORDAS PRETAS */
+        .lightbox-content {
+            border-radius: 15px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+            animation: zoomIn 0.3s ease;
+            border: 3px solid var(--accent);
+            object-fit: contain;
+            background: rgba(15, 23, 42, 0.9);
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+        }
+
+        /* Fundo específico para cada tipo de imagem */
+        .lightbox-content.npc-image-type {
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .lightbox-content.money-image-type {
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .lightbox-content.header-image-type {
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            z-index: 2001;
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            transform: translateY(-50%);
+            z-index: 2001;
+            pointer-events: none;
+        }
+
+        .lightbox-nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid var(--accent);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            pointer-events: all;
+        }
+
+        .lightbox-nav-btn:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* LEGENDA DO LIGHTBOX - POSICIONADA ABAIXO DA IMAGEM */
+        .lightbox-caption {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.8));
+            color: white;
+            font-size: 20px;
+            padding: 25px 40px;
+            text-align: center;
+            line-height: 1.5;
+            z-index: 2001;
+            backdrop-filter: blur(10px);
+            border-top: 2px solid var(--accent);
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { 
+                transform: scale(0.9); 
+                opacity: 0; 
+            }
+            to { 
+                transform: scale(1); 
+                opacity: 1; 
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 1200px) {
+            .main-content {
+                padding: 25px;
+                margin-left: 0;
+            }
+            
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .guide-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .header-image {
+                flex: 0 0 250px;
+                width: 100%;
+                max-width: 500px;
+            }
+            
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .npc-item {
+                flex-direction: column;
+                min-height: auto;
+            }
+            
+            .npc-image-container {
+                flex: 0 0 auto;
+                width: 100%;
+                padding: 40px;
+                height: 380px;
+            }
+            
+            .npc-image {
+                width: 234px;
+                height: 351px;
+            }
+            
+            .money-display {
+                gap: 30px;
+            }
+            
+            .money-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .lightbox-nav {
+                padding: 0 15px;
+            }
+
+            .lightbox-nav-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 30px;
+            }
+
+            .lightbox-caption {
+                font-size: 18px;
+                padding: 20px 25px;
+                min-height: 70px;
+            }
+
+            .lightbox-image-container {
+                max-height: 70vh;
+                margin-bottom: 70px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .guide-title {
+                font-size: 36px;
+            }
+            
+            .guide-subtitle {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .npc-name {
+                font-size: 24px;
+            }
+            
+            .npc-image-container {
+                height: 320px;
+                padding: 30px;
+            }
+            
+            .npc-image {
+                width: 195px;
+                height: 293px;
+            }
+            
+            .money-display {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .money-item {
+                margin-bottom: 30px;
+            }
+
+            .lightbox-caption {
+                font-size: 16px;
+                padding: 15px 20px;
+                min-height: 60px;
+            }
+
+            .lightbox-image-container {
+                max-width: 95%;
+                max-height: 65vh;
+                margin-bottom: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lightbox-caption {
+                font-size: 14px;
+                padding: 12px 15px;
+                min-height: 50px;
+            }
+            
+            .lightbox-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .lightbox-close {
+                width: 40px;
+                height: 40px;
+                font-size: 24px;
+                top: 15px;
+                right: 15px;
+            }
+            
+            .lightbox-image-container {
+                max-height: 60vh;
+                margin-bottom: 50px;
+            }
+        }
+
+        /* Menu Toggle para Mobile */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+        }
+
+        @media (max-width: 1200px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .guide-section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--accent), #3182ce);
+            border-radius: 6px;
+            border: 3px solid #1e293b;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #3182ce, var(--accent));
+        }
+
+        /* Utilitários */
+        .highlight {
+            color: var(--accent);
+            font-weight: 700;
+            background: rgba(66, 153, 225, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-30 { margin-top: 30px; }
+        .mb-30 { margin-bottom: 30px; }
+        .mt-50 { margin-top: 50px; }
+        .mb-50 { margin-bottom: 50px; }
+    </style>
+</head>
+<body>
+    <!-- Lightbox para imagens -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" id="lightboxClose">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="lightbox-nav">
+            <button class="lightbox-nav-btn" id="lightboxPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav-btn" id="lightboxNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="lightbox-image-container">
+            <img class="lightbox-content" id="lightboxImage" alt="Imagem ampliada">
+        </div>
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- Menu Toggle para Mobile -->
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <img src="Fotos/logo.png" alt="ZUMBAS LATAM" class="server-logo">
+                <div class="server-name">ZUMBAS LATAM</div>
+                <div class="server-tagline">SITE OFICIAL</div>
+            </div>
+            
+            <div style="margin-top: 40px;">
+                <div style="font-size: 13px; text-transform: uppercase; color: var(--accent); font-weight: 700; letter-spacing: 1.5px; margin-bottom: 20px; padding-left: 15px;">
+                    <i class="fas fa-book" style="margin-right: 10px;"></i>
+                    Guias Principais
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <a href="#mercado" style="display: flex; align-items: center; padding: 15px 20px; background: rgba(66, 153, 225, 0.2); border-radius: 12px; color: var(--accent); text-decoration: none; border: 2px solid var(--accent); font-weight: 700; transition: all 0.3s ease;">
+                        <span style="font-size: 20px; margin-right: 15px; width: 30px; text-align: center;">🌙</span>
+                        Mercado Negro
+                    </a>
+                    <!-- Adicione mais links para outros guias aqui -->
+                </div>
+            </div>
+        </nav>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <!-- Guia do Mercado Negro -->
+            <div id="mercado">
+                <div class="guide-header">
+                    <div class="header-image" data-lightbox="header" data-caption="Entrada do Mercado Negro" data-type="header-image">
+                        <img src="Fotos/black.png" alt="Entrada do Mercado Negro">
+                    </div>
+                    <div class="header-content">
+                        <div class="guide-badge">
+                            <i class="fas fa-coins" style="margin-right: 8px;"></i>
+                            Economia Avançada
+                        </div>
+                        <h1 class="guide-title">Mercado Negro</h1>
+                        <p class="guide-subtitle">
+                            O coração econômico do servidor. Um local secreto onde apenas os mais astutos prosperam
+                        </p>
+                        <p class="guide-subtitle">
+                            Funciona exclusivamente das <strong>à noite</strong> (horário do jogo)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Seção de NPCs -->
+                <div class="guide-section">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h2 class="section-title">Comerciantes do Mercado</h2>
+                    </div>
+                    
+                    <p style="color: var(--text-light); font-size: 18px; margin-bottom: 30px; line-height: 1.7;">
+                        Na Black Market há NPCs que controlam a ecônomia. Cada um especializado em um tipo diferente 
+                        de mercadoria
+                    </p>
+                    
+                    <div class="npc-list">
+                        <!-- NPC Jamal -->
+                        <div class="npc-item">
+                            <div class="npc-image-container">
+                                <div class="npc-image" data-lightbox="jamal" data-caption="JAMAL - Vendedor de Armas Pesadas" data-type="npc-image">
+                                    <img src="Fotos/jamal.png" alt="Jamal - Vendedor de Armas Pesadas">
+                                </div>
+                            </div>
+                            <div class="npc-content">
+                                <div class="npc-header">
+                                    <h3 class="npc-name">JAMAL</h3>
+                                    <span class="npc-role">Armas de Raid</span>
+                                </div>
+                                <div class="npc-description">
+                                    <p>
+                                        O fornecedor de armamento pesado mais confiável do mercado. Especializado em equipamentos 
+                                        de alto calibre essenciais para Raids e defesa avançada
+                                    </p>
+                                    <div class="npc-features">
+                                        <ul>
+                                            <li><strong>Compra:</strong> Armas de Raid de qualquer tipo</li>
+                                            <li><strong>Vende:</strong> Armas de Raid e munições específicas das mesmas</li>
+                                            <li><strong>Exclusivo:</strong> Oferece troca de Zumbos por barras de ouro</li>
+                                            <li><strong>Dica:</strong> Melhor preço para armas raras, que normalmente só são encontradas em Airdrops e Deadzones</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- NPC Arthur -->
+                        <div class="npc-item">
+                            <div class="npc-image-container">
+                                <div class="npc-image" data-lightbox="arthur" data-caption="ARTHUR - Fornecedor de Materiais de Construção" data-type="npc-image">
+                                    <img src="Fotos/arthur.png" alt="Arthur - Fornecedor de Materiais">
+                                </div>
+                            </div>
+                            <div class="npc-content">
+                                <div class="npc-header">
+                                    <h3 class="npc-name">ARTHUR</h3>
+                                    <span class="npc-role">Materiais de Construção</span>
+                                </div>
+                                <div class="npc-description">
+                                    <p>
+                                        O mestre construtor do mercado. Fornece materiais essenciais para quem busca 
+                                        fortificar suas bases ou iniciar projetos de construção ambiciosos
+                                    </p>
+                                    <div class="npc-features">
+                                        <ul>
+                                            <li><strong>Vende:</strong> Cimento</li>
+                                            <li><strong>Vende:</strong> Stacks de Metal Scrap</li>
+                                            <li><strong>Preço:</strong> Os melhores preços em Zumbos do servidor</li>
+                                            <li><strong>Dica:</strong> Ideal para farm avançada de construção</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- NPC Alexei -->
+                        <div class="npc-item">
+                            <div class="npc-image-container">
+                                <div class="npc-image" data-lightbox="alexei" data-caption="ALEXEI - Armas Militares/Ranger" data-type="npc-image">
+                                    <img src="Fotos/alexei.png" alt="Alexei - Armas Militares">
+                                </div>
+                            </div>
+                            <div class="npc-content">
+                                <div class="npc-header">
+                                    <h3 class="npc-name">ALEXEI</h3>
+                                    <span class="npc-role">Armamento Militar/Ranger</span>
+                                </div>
+                                <div class="npc-description">
+                                    <p>
+                                        Especialista em equipamento militar convencional. Seu arsenal é perfeito para 
+                                        jogadores que buscam armas confiáveis para combate médio e farm eficiente
+                                    </p>
+                                    <div class="npc-features">
+                                        <ul>
+                                            <li><strong>Compra:</strong> Armas Ranger e Military</li>
+                                            <li><strong>Vende:</strong> Armas Ranger e Military</li>
+                                            <li><strong>Vende:</strong> Munições correspondentes completas</li>
+                                            <li><strong>Dica:</strong> Bom para revenda de armas de PvP</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- NPC Jerry -->
+                        <div class="npc-item">
+                            <div class="npc-image-container">
+                                <div class="npc-image" data-lightbox="jerry" data-caption="JERRY - Caçador e Armeiro" data-type="npc-image">
+                                    <img src="Fotos/jerry.png" alt="Jerry - Caçador e Armeiro">
+                                </div>
+                            </div>
+                            <div class="npc-content">
+                                <div class="npc-header">
+                                    <h3 class="npc-name">JERRY</h3>
+                                    <span class="npc-role">Caçador</span>
+                                </div>
+                                <div class="npc-description">
+                                    <p>
+                                        Caçador experiente que valoriza a integridade das presas. Oferece os melhores 
+                                        preços para caçadores habilidosos e fornece equipamento de caça
+                                    </p>
+                                    <div class="npc-features">
+                                        <ul>
+                                            <li><strong>Compra:</strong> Carcaças de animais por alto preço</li>
+                                            <li><strong>Vende:</strong> Crossbows e flechas</li>
+                                            <li><strong>Condição:</strong> Apenas aceita carcaças INTEIRAS</li>
+                                            <li><strong>Dica:</strong> Melhor fonte de renda inicial do jogo</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- NPC Joe -->
+                        <div class="npc-item">
+                            <div class="npc-image-container">
+                                <div class="npc-image" data-lightbox="joe" data-caption="JOE HIGH'AS FUK - Especialista em Berries" data-type="npc-image">
+                                    <img src="Fotos/joe.png" alt="Joe High'as Fuk - Especialista em Berries">
+                                </div>
+                            </div>
+                            <div class="npc-content">
+                                <div class="npc-header">
+                                    <h3 class="npc-name">JOE HIGH'AS FUK</h3>
+                                    <span class="npc-role">Especialista em... dorgas?</span>
+                                </div>
+                                <div class="npc-description">
+                                    <p>
+                                        O excêntrico especialista em botânica que descobriu o valor oculto das berries. 
+                                        Oferece uma troca única que pode acelerar dramaticamente seu progresso
+                                    </p>
+                                    <div class="npc-features">
+                                        <ul>
+                                            <li><strong>Compra:</strong> Berries em troca de XP (30 XP cada)</li>
+                                            <li><strong>Exclusivo:</strong> Único NPC com este tipo de troca</li>
+                                            <li><strong>Eficiente:</strong> Método mais rápido de farm de XP</li>
+                                            <li><strong>Dica:</strong> Plante berries, e revenda com ele</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert mt-50">
+                        <div class="alert-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="alert-content">
+                            <strong>📍 Localização do Mercado Negro:</strong> Marcado claramente no mapa como "Black Market". 
+                            Encontra-se escondido dentro de um bunker natural em formações rochosas. Fácil de encontrar, 
+                            difícil de esquecer
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning mt-30">
+                        <div class="alert-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="alert-content">
+                            <strong>⚠️ ATENÇÃO - FUNCIONAMENTO NOTURNO:</strong> Todos os NPCs só aparecem durante a noite 
+                            no jogo (18:00 às 06:00). Ao amanhecer, eles desaparecem completamente
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção de Sistema Monetário -->
+                <div class="economy-section">
+                    <div class="economy-header">
+                        <div class="economy-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3 class="economy-title">Sistema Monetário</h3>
+                    </div>
+                    
+                    <p style="color: var(--text-light); font-size: 18px; text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        O Mercado Negro opera com duas formas de moeda: <strong>Zumbos</strong> para trocas diretas e 
+                        <strong>Barras de Ouro</strong> para estocagem de riqueza a longo prazo
+                    </p>
+                    
+                    <p style="color: var(--text-light); font-size: 18px; text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        O dinheiro do jogo só pode ser conseguido por meio de <strong>trocas</strong> no Black Market, ou matando outros jogadores que possuam
+                    </p>
+                    
+                    <div class="money-display">
+                        <div class="money-item">
+                            <div class="money-image" data-lightbox="notas" data-caption="Notas de Zumbos - Moeda principal para todas as trocas no mercado" data-type="money-image">
+                                <img src="Fotos/notas.png" alt="Notas de Zumbos">
+                            </div>
+                            <div class="money-name">Notas de Zumbos</div>
+                            <div class="money-description">
+                                <strong>Moeda principal para todas as trocas no mercado</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="money-item">
+                            <div class="money-image" data-lightbox="ouro" data-caption="Barras de Ouro - Reserva de valor para estocagem segura de riqueza" data-type="money-image">
+                                <img src="Fotos/ouro.png" alt="Barras de Ouro">
+                            </div>
+                            <div class="money-name">Barras de Ouro</div>
+                            <div class="money-description">
+                                <strong></strong>Reserva de valor para estocagem segura de riqueza</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <p style="color: var(--text-light); font-size: 16px;">
+                            <strong>Dica:</strong> Caso acumule uma grande quantidade de dinheiro em papel, troque parte dos Zumbos por Barras de Ouro 
+                            com o Jamal, para ter uma melhor organização
+                        </p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px;">
+                        <p style="color: var(--text-light); font-size: 16px;">
+                            <strong>⚠️ ATENÇÃO:</strong> Barras de ouro não podem ser utilizadas diretamente em trocas
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Seção de Estratégias -->
+                <div class="guide-section">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h2 class="section-title">Estratégias de Farm</h2>
+                    </div>
+                    
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="card-title">Guia de Farm</h3>
+                            <div class="card-content">
+                                <ul>
+                                    <li><span class="highlight">Animais:</span> Mate todos os animais que encontrar (ursos, lobos, veados, porcos e vacas), e guarde suas carcaças para vender</li>
+                                    <li><span class="highlight">Estoque armas:</span> Guarde armas Militares e Ranger de loot e de PvP para revenda</li>
+                                    <li><span class="highlight">Planejamento noturno:</span> Organize seu inventário antes das 18:00</li>
+                                    <li><span class="highlight">Planeje a ida:</span> Vá ao mercado em grupo, para segurança. Lá é uma área muito disputada</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="card-title">Segurança e Precauções</h3>
+                            <div class="card-content">
+                                <ul>
+                                    <li><span class="highlight">Cuidado com campers:</span> A área é extremamente movimentada e perigosa</li>
+                                    <li><span class="highlight">Nunca vá desarmado:</span> Sempre leve o melhor equipamento que tiver para PvP</li>
+                                    <li><span class="highlight">Evite ir sozinho:</span> Especialmente durante períodos de PvP ativo</li>
+                                    <li><span class="highlight">Rotas de fuga:</span> Tenha pelo menos duas rotas de escape planejadas</li>
+                                    <li><span class="highlight">Marque no mapa:</span> Coloque uma cama no local para retornos rápidos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Menu Toggle para Mobile
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        });
+
+        // Fechar sidebar ao clicar fora (mobile)
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.getElementById('menuToggle');
+            
+            if (window.innerWidth <= 1200 && 
+                !sidebar.contains(event.target) && 
+                !menuToggle.contains(event.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Scroll suave para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Fechar sidebar no mobile após clique
+                    if (window.innerWidth <= 1200) {
+                        document.getElementById('sidebar').classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Tratamento para imagens que não carregam (incluindo a logo)
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                const parent = this.closest('.npc-image, .money-image, .header-image');
+                if (parent) {
+                    parent.innerHTML = `
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(30, 41, 59, 0.7); color: var(--text-light); border-radius: 15px;">
+                            <div style="font-size: 48px; margin-bottom: 15px;">📷</div>
+                            <div style="text-align: center; padding: 0 20px; font-size: 14px;">Imagem não carregada</div>
+                        </div>
+                    `;
+                }
+                
+                // Tratamento específico para a logo
+                if (this.classList.contains('server-logo') || this.src.includes('logo.png')) {
+                    const logoContainer = this.closest('.logo-container');
+                    if (logoContainer) {
+                        logoContainer.innerHTML = `
+                            <div class="server-name">ZUMBAS LATAM</div>
+                            <div class="server-tagline">SITE OFICIAL</div>
+                        `;
+                    }
+                }
+            });
+        });
+
+        // Animação de entrada suave
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Adiciona classes de animação para elementos
+            const animateElements = document.querySelectorAll('.npc-item, .info-card');
+            animateElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+                el.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            });
+
+            // Inicializar lightbox
+            initLightbox();
+        });
+
+        // Suporte a teclado
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+H para voltar ao topo
+            if(e.ctrlKey && e.key === 'h') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // Ctrl+M para abrir/fechar menu no mobile
+            if(e.ctrlKey && e.key === 'm' && window.innerWidth <= 1200) {
+                e.preventDefault();
+                document.getElementById('sidebar').classList.toggle('active');
+            }
+            
+            // Esc para fechar menu
+            if(e.key === 'Escape' && window.innerWidth <= 1200) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
+
+            // Esc para fechar lightbox
+            if(e.key === 'Escape') {
+                closeLightbox();
+            }
+
+            // Setas para navegar no lightbox
+            if(e.key === 'ArrowLeft') {
+                navigateLightbox('prev');
+            }
+
+            if(e.key === 'ArrowRight') {
+                navigateLightbox('next');
+            }
+        });
+
+        // Ajusta layout na mudança de tamanho da tela
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1200) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
+        });
+
+        // Sistema de Lightbox
+        let currentLightboxIndex = 0;
+        let lightboxImages = [];
+
+        function initLightbox() {
+            // Coletar todas as imagens clicáveis
+            const clickableImages = document.querySelectorAll('[data-lightbox]');
+            lightboxImages = Array.from(clickableImages);
+            
+            // Adicionar eventos de clique
+            lightboxImages.forEach((container, index) => {
+                container.style.cursor = 'pointer';
+                container.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    currentLightboxIndex = index;
+                    openLightbox();
+                });
+            });
+
+            // Configurar botões do lightbox
+            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+            document.getElementById('lightboxPrev').addEventListener('click', () => navigateLightbox('prev'));
+            document.getElementById('lightboxNext').addEventListener('click', () => navigateLightbox('next'));
+
+            // Fechar lightbox ao clicar fora da imagem
+            document.getElementById('lightbox').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeLightbox();
+                }
+            });
+        }
+
+        function openLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            
+            const currentContainer = lightboxImages[currentLightboxIndex];
+            const imgElement = currentContainer.querySelector('img');
+            const imageType = currentContainer.getAttribute('data-type') || 'npc-image';
+            
+            // Reset da imagem
+            lightboxImage.style.opacity = '0';
+            
+            // Remover todas as classes de tipo anteriores
+            lightboxImage.classList.remove('npc-image-type', 'money-image-type', 'header-image-type');
+            // Adicionar a classe correta para o tipo de imagem
+            lightboxImage.classList.add(imageType + '-type');
+            
+            // Criar uma nova imagem para pré-carregar
+            const tempImage = new Image();
+            tempImage.onload = function() {
+                // Aplicar a imagem ao lightbox
+                lightboxImage.src = this.src;
+                lightboxImage.alt = imgElement.alt;
+                lightboxCaption.textContent = currentContainer.getAttribute('data-caption') || '';
+                
+                // Ajustar tamanho da imagem mantendo proporção
+                adjustImageSize(tempImage.width, tempImage.height, imageType);
+                
+                // Mostrar a imagem com transição suave
+                setTimeout(() => {
+                    lightboxImage.style.opacity = '1';
+                }, 50);
+            };
+            
+            tempImage.src = imgElement.src;
+            
+            // Abrir o lightbox
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function adjustImageSize(imgWidth, imgHeight, imageType) {
+            const lightboxImage = document.getElementById('lightboxImage');
+            
+            // Dimensões máximas baseadas na viewport
+            const maxWidth = window.innerWidth * 0.9;
+            const maxHeight = window.innerHeight * 0.8 - 100; // Subtrair espaço para legenda
+            
+            let width = imgWidth;
+            let height = imgHeight;
+            
+            // Ajustar para caber na tela mantendo proporção
+            if (width > maxWidth) {
+                const ratio = maxWidth / width;
+                width = maxWidth;
+                height = height * ratio;
+            }
+            
+            if (height > maxHeight) {
+                const ratio = maxHeight / height;
+                height = maxHeight;
+                width = width * ratio;
+            }
+            
+            // Aplicar dimensões ajustadas
+            lightboxImage.style.width = width + 'px';
+            lightboxImage.style.height = height + 'px';
+            
+            // Para imagens NPC, garantir que mantenham a proporção vertical
+            if (imageType === 'npc-image') {
+                // Manter proporção vertical similar à original do site
+                const targetRatio = 351 / 234; // Proporção original das imagens NPC (altura/largura)
+                const currentRatio = height / width;
+                
+                if (currentRatio < targetRatio) {
+                    // Ajustar altura para manter proporção
+                    height = width * targetRatio;
+                    lightboxImage.style.height = height + 'px';
+                }
+            }
+            
+            // Remover qualquer estilização extra
+            lightboxImage.style.margin = '0';
+            lightboxImage.style.padding = '0';
+            lightboxImage.style.display = 'block';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Reset da imagem
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.style.width = '';
+            lightboxImage.style.height = '';
+            lightboxImage.style.opacity = '0';
+            lightboxImage.classList.remove('npc-image-type', 'money-image-type', 'header-image-type');
+        }
+
+        function navigateLightbox(direction) {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (direction === 'prev') {
+                currentLightboxIndex = (currentLightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+            } else {
+                currentLightboxIndex = (currentLightboxIndex + 1) % lightboxImages.length;
+            }
+            
+            openLightbox();
+        }
+
+        // Adicionar navegação por swipe no mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById('lightbox').addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById('lightbox').addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            
+            if (touchStartX - touchEndX > swipeThreshold) {
+                // Swipe para esquerda = próximo
+                navigateLightbox('next');
+            } else if (touchEndX - touchStartX > swipeThreshold) {
+                // Swipe para direita = anterior
+                navigateLightbox('prev');
+            }
+        }
+
+        // Ajustar tamanho da imagem quando a janela for redimensionada
+        window.addEventListener('resize', function() {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                const lightboxImage = document.getElementById('lightboxImage');
+                const currentContainer = lightboxImages[currentLightboxIndex];
+                const imageType = currentContainer.getAttribute('data-type') || 'npc-image';
+                
+                if (lightboxImage.naturalWidth) {
+                    adjustImageSize(lightboxImage.naturalWidth, lightboxImage.naturalHeight, imageType);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
