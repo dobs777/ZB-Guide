@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>📚 Guias Oficiais - ZUMBAS BRASIL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -64,34 +61,6 @@
             overflow-y: auto;
             z-index: 1000;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
-        }
-
-        /* Menu Toggle Mobile */
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1002;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .menu-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .menu-toggle.active {
-            left: 240px;
         }
 
         .logo-container {
@@ -193,7 +162,6 @@
             padding: 30px;
             max-width: 1400px;
             min-height: 100vh;
-            transition: margin-left 0.3s ease;
         }
 
         /* Conteúdo das Abas */
@@ -1720,27 +1688,20 @@
             }
         }
 
-        /* RESPONSIVIDADE COMPLETA */
-
-        /* Tablets e telas menores */
+        /* Responsividade */
         @media (max-width: 1200px) {
+            .main-content {
+                padding: 25px;
+                margin-left: 0;
+            }
+            
             .sidebar {
                 transform: translateX(-100%);
+                transition: transform 0.3s ease;
             }
             
             .sidebar.active {
                 transform: translateX(0);
-            }
-            
-            .main-content {
-                margin-left: 0;
-                padding: 20px;
-            }
-            
-            .menu-toggle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
             }
             
             .guide-header {
@@ -1750,13 +1711,16 @@
             }
             
             .header-image {
-                flex: 0 0 auto;
+                flex: 0 0 250px;
                 width: 100%;
                 max-width: 500px;
             }
+            
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* Tablets pequenos */
         @media (max-width: 992px) {
             .deadzone-item,
             .npc-item,
@@ -1770,8 +1734,8 @@
             .door-image-container {
                 flex: 0 0 auto;
                 width: 100%;
-                padding: 30px;
-                height: 350px;
+                padding: 40px;
+                height: 380px;
             }
             
             .deadzone-image {
@@ -1780,17 +1744,69 @@
             }
             
             .npc-image {
-                width: 200px;
-                height: 300px;
+                width: 234px;
+                height: 351px;
             }
             
+            .equipment-grid-2x2 {
+                grid-template-columns: 1fr;
+            }
+
             .door-main-image {
                 width: 250px;
                 height: 250px;
             }
+
+            .beacons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .loot-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+
+            .money-display {
+                gap: 30px;
+            }
             
+            .money-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .lightbox-nav {
+                padding: 0 15px;
+            }
+
+            .lightbox-nav-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 30px;
+            }
+
+            .lightbox-caption {
+                font-size: 18px;
+                padding: 20px 25px;
+                min-height: 70px;
+            }
+
+            .lightbox-image-container {
+                max-height: 70vh;
+                margin-bottom: 70px;
+            }
+        }
+
+        @media (max-width: 768px) {
             .guide-title {
-                font-size: 38px;
+                font-size: 36px;
             }
             
             .guide-subtitle {
@@ -1801,232 +1817,83 @@
                 font-size: 28px;
             }
             
-            .info-cards {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Celulares grandes */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 15px;
-            }
-            
-            .guide-header {
-                padding: 25px;
-            }
-            
-            .guide-title {
-                font-size: 32px;
-            }
-            
-            .guide-subtitle {
-                font-size: 16px;
-            }
-            
-            .guide-section {
-                padding: 25px;
-            }
-            
             .deadzone-name,
-            .npc-name,
-            .door-name-special {
+            .npc-name {
                 font-size: 24px;
             }
             
             .deadzone-image-container,
-            .npc-image-container,
-            .door-image-container {
-                height: 300px;
-                padding: 20px;
+            .npc-image-container {
+                height: 320px;
+                padding: 30px;
             }
             
             .deadzone-image {
-                width: 200px;
-                height: 200px;
+                width: 220px;
+                height: 220px;
             }
             
             .npc-image {
+                width: 195px;
+                height: 293px;
+            }
+
+            .door-name-special {
+                font-size: 24px;
+            }
+
+            .door-main-image {
+                width: 220px;
+                height: 220px;
+            }
+
+            .door-tool-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .beacon-image {
                 width: 180px;
-                height: 270px;
-            }
-            
-            .deadzone-content,
-            .npc-content,
-            .door-content-special {
-                padding: 25px;
-            }
-            
-            .beacons-grid {
-                grid-template-columns: 1fr;
+                height: 180px;
             }
             
             .money-display {
                 flex-direction: column;
                 align-items: center;
-                gap: 30px;
             }
             
+            .money-item {
+                margin-bottom: 30px;
+            }
+
             .loot-grid {
-                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
             }
-            
-            .special-box {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .lightbox-nav-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-            }
-            
-            .lightbox-close {
-                width: 50px;
-                height: 50px;
-                font-size: 30px;
-                top: 20px;
-                right: 20px;
-            }
-            
+
             .lightbox-caption {
                 font-size: 16px;
-                padding: 20px;
+                padding: 15px 20px;
+                min-height: 60px;
+            }
+
+            .lightbox-image-container {
+                max-width: 95%;
+                max-height: 65vh;
+                margin-bottom: 60px;
             }
         }
 
-        /* Celulares pequenos */
         @media (max-width: 480px) {
-            .guide-title {
-                font-size: 28px;
-            }
-            
-            .guide-subtitle {
+            .lightbox-caption {
                 font-size: 14px;
-            }
-            
-            .section-title {
-                font-size: 24px;
-            }
-            
-            .deadzone-name,
-            .npc-name,
-            .door-name-special {
-                font-size: 20px;
-            }
-            
-            .deadzone-requirement,
-            .npc-role {
-                font-size: 12px;
-                padding: 6px 15px;
-            }
-            
-            .deadzone-image-container,
-            .npc-image-container,
-            .door-image-container {
-                height: 250px;
-                padding: 15px;
-            }
-            
-            .deadzone-image {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .npc-image {
-                width: 140px;
-                height: 210px;
-            }
-            
-            .door-main-image {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .deadzone-content,
-            .npc-content,
-            .door-content-special {
-                padding: 20px;
-            }
-            
-            .deadzone-description,
-            .npc-description,
-            .door-description-special {
-                font-size: 14px;
-            }
-            
-            .info-cards {
-                gap: 20px;
-            }
-            
-            .info-card {
-                padding: 20px;
-            }
-            
-            .equipment-section,
-            .door-section,
-            .beacons-section,
-            .economy-section {
-                padding: 25px;
-            }
-            
-            .equipment-grid-2x2 {
-                gap: 20px;
-            }
-            
-            .equipment-image {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .equipment-name {
-                font-size: 18px;
-            }
-            
-            .beacon-image {
-                width: 160px;
-                height: 160px;
-            }
-            
-            .money-image {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .loot-grid {
-                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-                gap: 10px;
-            }
-            
-            .loot-image {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .door-tool-image {
-                width: 70px;
-                height: 70px;
-            }
-            
-            .progress-step {
-                padding: 15px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            .step-number {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
+                padding: 12px 15px;
+                min-height: 50px;
             }
             
             .lightbox-nav-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 16px;
-                padding: 0 10px;
             }
             
             .lightbox-close {
@@ -2037,91 +1904,50 @@
                 right: 15px;
             }
             
-            .lightbox-caption {
-                font-size: 14px;
-                padding: 15px;
-                min-height: 60px;
-            }
-            
             .lightbox-image-container {
                 max-height: 60vh;
-                margin-bottom: 60px;
+                margin-bottom: 50px;
             }
-            
-            .menu-toggle {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
-            
-            .server-name {
-                font-size: 24px;
-            }
-            
-            .tab-button {
-                padding: 15px;
-                font-size: 14px;
-            }
-            
-            .tab-button i {
-                font-size: 18px;
-                margin-right: 10px;
-            }
-        }
 
-        /* Telas muito pequenas */
-        @media (max-width: 360px) {
-            .deadzone-image-container,
-            .npc-image-container,
-            .door-image-container {
-                height: 200px;
-            }
-            
-            .deadzone-image {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .npc-image {
-                width: 100px;
-                height: 150px;
-            }
-            
-            .guide-title {
-                font-size: 24px;
-            }
-            
             .loot-grid {
-                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
             }
-            
-            .equipment-image {
-                width: 120px;
-                height: 120px;
+
+            .door-tool-image {
+                width: 70px;
+                height: 70px;
+            }
+
+            .beacon-image {
+                width: 160px;
+                height: 160px;
             }
         }
 
-        /* Orientação paisagem em celulares */
-        @media (max-height: 600px) and (orientation: landscape) {
-            .sidebar {
-                overflow-y: auto;
-                height: 100vh;
+        /* Menu Toggle para Mobile */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+        }
+
+        @media (max-width: 1200px) {
+            .menu-toggle {
+                display: block;
             }
             
-            .deadzone-image-container,
-            .npc-image-container,
-            .door-image-container {
-                height: 200px;
-            }
-            
-            .deadzone-item,
-            .npc-item,
-            .door-item-special {
-                min-height: 200px;
-            }
-            
-            .lightbox-image-container {
-                max-height: 70vh;
+            .main-content {
+                margin-left: 0;
             }
         }
 
@@ -2143,7 +1969,7 @@
 
         /* Scrollbar Personalizada */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 12px;
         }
 
         ::-webkit-scrollbar-track {
@@ -2152,7 +1978,8 @@
 
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(to bottom, var(--accent), #3182ce);
-            border-radius: 4px;
+            border-radius: 6px;
+            border: 3px solid #1e293b;
         }
 
         ::-webkit-scrollbar-thumb:hover {
@@ -3202,7 +3029,7 @@
                     
                     // Fecha sidebar no mobile
                     if (window.innerWidth <= 1200) {
-                        closeSidebar();
+                        document.getElementById('sidebar').classList.remove('active');
                     }
                     
                     // Scroll para o topo do conteúdo
@@ -3213,7 +3040,7 @@
             // Verifica se há hash na URL para abrir aba específica
             const hash = window.location.hash;
             if (hash) {
-                const tabName = hash.substring(1);
+                const tabName = hash.substring(1); // Remove o #
                 const tabButton = document.querySelector(`[data-tab="${tabName}"]`);
                 if (tabButton) {
                     tabButton.click();
@@ -3222,50 +3049,23 @@
         });
 
         // Menu Toggle para Mobile
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        
-        menuToggle.addEventListener('click', function() {
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-            
-            // Muda o ícone
-            const icon = this.querySelector('i');
-            if (sidebar.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
         });
 
-        // Fecha sidebar ao clicar fora
+        // Fechar sidebar ao clicar fora (mobile)
         document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.getElementById('menuToggle');
+            
             if (window.innerWidth <= 1200 && 
                 !sidebar.contains(event.target) && 
                 !menuToggle.contains(event.target) && 
                 sidebar.classList.contains('active')) {
-                closeSidebar();
+                sidebar.classList.remove('active');
             }
         });
-
-        // Fecha sidebar ao clicar em um link
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.addEventListener('click', () => {
-                if (window.innerWidth <= 1200) {
-                    closeSidebar();
-                }
-            });
-        });
-
-        function closeSidebar() {
-            sidebar.classList.remove('active');
-            menuToggle.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
 
         // Tratamento para imagens que não carregam
         document.querySelectorAll('img').forEach(img => {
@@ -3311,9 +3111,6 @@
 
             // Inicializar lightbox
             initLightbox();
-            
-            // Inicializar sistema de atualização
-            initUpdateSystem();
         });
 
         // Sistema de Lightbox
@@ -3394,7 +3191,7 @@
             
             // Dimensões máximas baseadas na viewport
             const maxWidth = window.innerWidth * 0.9;
-            const maxHeight = window.innerHeight * 0.8 - 100;
+            const maxHeight = window.innerHeight * 0.8 - 100; // Subtrair espaço para legenda
             
             let width = imgWidth;
             let height = imgHeight;
@@ -3416,12 +3213,25 @@
             lightboxImage.style.width = width + 'px';
             lightboxImage.style.height = height + 'px';
             
-            // Para imagens NPC, manter proporção vertical
-            if (imageType === 'npc-image') {
-                const targetRatio = 351 / 234;
+            // Para imagens Deadzone e Door, manter proporção quadrada
+            if (imageType === 'deadzone-image' || imageType === 'door-image') {
+                const targetRatio = 1; // Proporção quadrada
                 const currentRatio = height / width;
                 
                 if (currentRatio < targetRatio) {
+                    // Ajustar altura para manter proporção
+                    height = width * targetRatio;
+                    lightboxImage.style.height = height + 'px';
+                }
+            }
+            
+            // Para imagens NPC, manter proporção vertical
+            if (imageType === 'npc-image') {
+                const targetRatio = 351 / 234; // Proporção original das imagens NPC (altura/largura)
+                const currentRatio = height / width;
+                
+                if (currentRatio < targetRatio) {
+                    // Ajustar altura para manter proporção
                     height = width * targetRatio;
                     lightboxImage.style.height = height + 'px';
                 }
@@ -3496,15 +3306,6 @@
                     adjustImageSize(lightboxImage.naturalWidth, lightboxImage.naturalHeight, imageType);
                 }
             }
-            
-            // Ajustar sidebar em mudanças de tamanho
-            if (window.innerWidth > 1200) {
-                sidebar.classList.remove('active');
-                menuToggle.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
         });
 
         // Suporte a teclado
@@ -3522,111 +3323,6 @@
             if(e.key === 'ArrowRight') {
                 navigateLightbox('next');
             }
-        });
-
-        // Sistema de Atualização Automática
-        function initUpdateSystem() {
-            const version = '1.0.0';
-            const lastUpdateKey = 'zumbas_last_update';
-            const versionKey = 'zumbas_version';
-            
-            // Verificar se é uma nova versão
-            const storedVersion = localStorage.getItem(versionKey);
-            if (storedVersion !== version) {
-                // Nova versão detectada
-                localStorage.setItem(versionKey, version);
-                localStorage.setItem(lastUpdateKey, Date.now());
-                
-                // Limpar cache forçadamente
-                if ('caches' in window) {
-                    caches.keys().then(function(cacheNames) {
-                        cacheNames.forEach(function(cacheName) {
-                            caches.delete(cacheName);
-                        });
-                    });
-                }
-                
-                // Recarregar a página para aplicar atualizações
-                setTimeout(() => {
-                    window.location.reload(true);
-                }, 1000);
-            }
-            
-            // Verificar atualizações a cada 30 minutos
-            setInterval(() => {
-                checkForUpdates();
-            }, 30 * 60 * 1000);
-            
-            // Forçar atualização ao focar na janela
-            window.addEventListener('focus', checkForUpdates);
-        }
-
-        function checkForUpdates() {
-            // Adicionar timestamp às requisições para evitar cache
-            const timestamp = new Date().getTime();
-            
-            // Verificar se o HTML foi atualizado
-            fetch(`${window.location.href}?t=${timestamp}`, {
-                method: 'HEAD',
-                cache: 'no-cache'
-            })
-            .then(response => {
-                const lastModified = response.headers.get('last-modified');
-                const storedDate = localStorage.getItem('zumbas_last_modified');
-                
-                if (lastModified && lastModified !== storedDate) {
-                    localStorage.setItem('zumbas_last_modified', lastModified);
-                    showUpdateNotification();
-                }
-            })
-            .catch(error => console.log('Erro ao verificar atualizações:', error));
-        }
-
-        function showUpdateNotification() {
-            // Criar notificação de atualização
-            const notification = document.createElement('div');
-            notification.innerHTML = `
-                <div style="position: fixed; top: 20px; right: 20px; background: var(--accent); color: white; padding: 15px 20px; border-radius: 10px; z-index: 10000; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 10px; max-width: 300px;">
-                    <i class="fas fa-sync-alt" style="font-size: 20px;"></i>
-                    <div>
-                        <strong>Nova atualização disponível!</strong>
-                        <div style="font-size: 12px; margin-top: 5px;">Clique para recarregar</div>
-                    </div>
-                    <button id="closeUpdate" style="background: none; border: none; color: white; cursor: pointer; margin-left: auto;">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Fechar notificação
-            notification.querySelector('#closeUpdate').addEventListener('click', function() {
-                notification.remove();
-            });
-            
-            // Recarregar ao clicar na notificação
-            notification.addEventListener('click', function(e) {
-                if (e.target.id !== 'closeUpdate') {
-                    window.location.reload(true);
-                }
-            });
-            
-            // Remover automaticamente após 10 segundos
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.remove();
-                }
-            }, 10000);
-        }
-
-        // Adicionar loader para imagens
-        window.addEventListener('load', function() {
-            // Esconder loader
-            document.body.style.opacity = '1';
-            
-            // Salvar timestamp da última carga
-            localStorage.setItem('zumbas_last_load', Date.now());
         });
     </script>
 </body>
