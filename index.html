@@ -27,6 +27,9 @@
             --oil: #f56565;
             --alpha: #9f7aea;
             --ufo: #00ff00;
+            --construction: #9f7aea;
+            --bricks: #f56565;
+            --reinforced: #805ad5;
         }
 
         * {
@@ -278,6 +281,12 @@
             border-color: rgba(66, 153, 225, 0.3);
         }
 
+        .construction-badge {
+            background: rgba(159, 122, 234, 0.2);
+            color: var(--construction);
+            border-color: rgba(159, 122, 234, 0.3);
+        }
+
         .guide-title {
             font-size: 36px;
             font-weight: 900;
@@ -322,6 +331,10 @@
             border-image: linear-gradient(to right, var(--accent), transparent) 1;
         }
 
+        .construction-section-header {
+            border-image: linear-gradient(to right, var(--construction), transparent) 1;
+        }
+
         .section-icon {
             font-size: 28px;
             margin-right: 15px;
@@ -343,11 +356,655 @@
             background: rgba(66, 153, 225, 0.1);
         }
 
+        .construction-icon {
+            color: var(--construction);
+            background: rgba(159, 122, 234, 0.1);
+        }
+
         .section-title {
             font-size: 26px;
             font-weight: 800;
             color: var(--text);
             letter-spacing: -0.5px;
+        }
+
+        /* Seções Específicas do Guia de Construção */
+        .construction-section {
+            background: linear-gradient(135deg, rgba(159, 122, 234, 0.15), rgba(159, 122, 234, 0.05));
+            border: 2px solid rgba(159, 122, 234, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .construction-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .construction-icon-large {
+            font-size: 32px;
+            color: var(--construction);
+            background: rgba(159, 122, 234, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .construction-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--construction);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Grade de Madeiras */
+        .woods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .wood-item {
+            text-align: center;
+            padding: 25px;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 15px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .wood-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .wood-item.best { border-color: var(--success); }
+        .wood-item.medium { border-color: var(--warning); }
+        .wood-item.worst { border-color: var(--danger); }
+
+        .wood-image {
+            width: 200px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .wood-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .wood-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .wood-item.best .wood-name { color: var(--success); }
+        .wood-item.medium .wood-name { color: var(--warning); }
+        .wood-item.worst .wood-name { color: var(--danger); }
+
+        .wood-status {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+            color: white;
+        }
+
+        .best .wood-status { 
+            background: linear-gradient(135deg, var(--success) 0%, #38a169 100%);
+        }
+
+        .medium .wood-status { 
+            background: linear-gradient(135deg, var(--warning) 0%, #dd6b20 100%);
+        }
+
+        .worst .wood-status { 
+            background: linear-gradient(135deg, var(--danger) 0%, #e53e3e 100%);
+        }
+
+        /* Lista de Materiais */
+        .materials-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .material-item {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .material-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .material-item.metal { border-color: #4299e1; }
+        .material-item.bricks { border-color: #f56565; }
+        .material-item.reinforced { border-color: #9f7aea; }
+
+        .material-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .material-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .material-name {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .material-item.metal .material-name { color: #4299e1; }
+        .material-item.bricks .material-name { color: #f56565; }
+        .material-item.reinforced .material-name { color: #9f7aea; }
+
+        .material-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .material-description ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .material-description li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        /* Craft Box */
+        .craft-box {
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid;
+            margin-top: 20px;
+        }
+
+        .material-item.metal .craft-box { border-left-color: #4299e1; }
+        .material-item.bricks .craft-box { border-left-color: #f56565; }
+        .material-item.reinforced .craft-box { border-left-color: #9f7aea; }
+
+        .craft-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .material-item.metal .craft-title { color: #4299e1; }
+        .material-item.bricks .craft-title { color: #f56565; }
+        .material-item.reinforced .craft-title { color: #9f7aea; }
+
+        .craft-items {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .craft-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .craft-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .craft-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.9);
+            margin-bottom: 8px;
+        }
+
+        .material-item.metal .craft-image { border-color: #4299e1; }
+        .material-item.bricks .craft-image { border-color: #f56565; }
+        .material-item.reinforced .craft-image { border-color: #9f7aea; }
+
+        .craft-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .craft-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text);
+            max-width: 80px;
+        }
+
+        .craft-quantity {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .craft-arrow {
+            font-size: 20px;
+            color: var(--text-light);
+            font-weight: bold;
+        }
+
+        /* Ferramentas */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .tool-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--hazard);
+            box-shadow: 0 15px 35px rgba(251, 191, 36, 0.1);
+        }
+
+        .tool-image {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid rgba(251, 191, 36, 0.3);
+            background: rgba(15, 23, 42, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .tool-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .tool-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--hazard);
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tool-description {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Sentries */
+        .sentries-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .sentry-item {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .sentry-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .sentry-content {
+            padding: 25px;
+        }
+
+        .sentry-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .sentry-name {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--alien);
+        }
+
+        .sentry-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sentry-description ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .sentry-description li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        /* Tabela de Proteção */
+        .protection-table-container {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 2px solid var(--border);
+            overflow-x: auto;
+        }
+
+        .protection-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .protection-table th {
+            background: linear-gradient(135deg, var(--accent) 0%, #3182ce 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+        }
+
+        .protection-table th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+
+        .protection-table th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+
+        .protection-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .protection-table tr:nth-child(even) {
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        .protection-table tr:hover {
+            background: rgba(66, 153, 225, 0.1);
+        }
+
+        .protection-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .protection-badge {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+        }
+
+        .badge-success { background: linear-gradient(135deg, var(--success) 0%, #38a169 100%); }
+        .badge-warning { background: linear-gradient(135deg, var(--warning) 0%, #dd6b20 100%); }
+        .badge-danger { background: linear-gradient(135deg, var(--danger) 0%, #e53e3e 100%); }
+        .badge-info { background: linear-gradient(135deg, var(--accent) 0%, #3182ce 100%); }
+
+        /* Horários de Proteção */
+        .protection-schedule {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .time-slot {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .time-slot:hover {
+            transform: translateY(-5px);
+        }
+
+        .time-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            border: 4px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .night-time .time-circle {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            border-color: var(--accent);
+        }
+
+        .day-time .time-circle {
+            background: linear-gradient(135deg, #fbbf24 0%, #f6ad55 100%);
+            border-color: var(--warning);
+        }
+
+        .time-range {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            z-index: 1;
+        }
+
+        .time-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .night-time .time-name { color: var(--accent); }
+        .day-time .time-name { color: var(--warning); }
+
+        .time-description {
+            font-size: 14px;
+            color: var(--text-light);
+            max-width: 200px;
+        }
+
+        /* Tool Cupboard */
+        .cupboard-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .cupboard-image-container {
+            flex: 0 0 250px;
+        }
+
+        .cupboard-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid rgba(72, 187, 120, 0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .cupboard-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .cupboard-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cupboard-commands {
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid var(--success);
+            margin-top: 20px;
+        }
+
+        .command-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+            border-left: 3px solid var(--success);
+        }
+
+        .command-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .command-name {
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .command-description {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        /* Dicas */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .tip-item {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .tip-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .tip-icon {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--accent);
+            background: rgba(66, 153, 225, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tip-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+
+        .tip-content {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .tip-content ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .tip-content li {
+            margin-bottom: 8px;
+            position: relative;
         }
 
         /* Layout de Deadzones */
@@ -735,82 +1392,6 @@
             font-weight: 600;
             color: var(--text);
             line-height: 1.3;
-        }
-
-        /* Alertas Estilizados */
-        .alert {
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            border-left: 5px solid;
-            border-right: 1px solid;
-            border-top: 1px solid;
-            border-bottom: 1px solid;
-        }
-
-        .deadzone-alert {
-            background: linear-gradient(135deg, rgba(72, 187, 120, 0.15), rgba(72, 187, 120, 0.05));
-            border-left-color: var(--radioactive);
-            border-color: rgba(72, 187, 120, 0.2);
-        }
-
-        .mercado-alert {
-            background: linear-gradient(135deg, rgba(66, 153, 225, 0.15), rgba(66, 153, 225, 0.05));
-            border-left-color: var(--accent);
-            border-color: rgba(66, 153, 225, 0.2);
-        }
-
-        .alert-icon {
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .deadzone-alert .alert-icon {
-            color: var(--radioactive);
-        }
-
-        .mercado-alert .alert-icon {
-            color: var(--accent);
-        }
-
-        .alert-content {
-            flex: 1;
-            font-size: 14px;
-        }
-
-        .alert strong {
-            font-weight: 700;
-        }
-
-        .deadzone-alert strong {
-            color: var(--radioactive);
-        }
-
-        .mercado-alert strong {
-            color: var(--accent);
-        }
-
-        .alert-warning {
-            background: linear-gradient(135deg, rgba(237, 137, 54, 0.15), rgba(237, 137, 54, 0.05));
-            border-left: 5px solid var(--warning);
-            border-color: rgba(237, 137, 54, 0.2);
-        }
-
-        .alert-warning .alert-icon {
-            color: var(--warning);
-        }
-
-        .alert-danger {
-            background: linear-gradient(135deg, rgba(245, 101, 101, 0.15), rgba(245, 101, 101, 0.05));
-            border-left: 5px solid var(--danger);
-            border-color: rgba(245, 101, 101, 0.2);
-        }
-
-        .alert-danger .alert-icon {
-            color: var(--danger);
         }
 
         /* Seção de Equipamentos */
@@ -1398,6 +1979,106 @@
             margin-bottom: 5px;
         }
 
+        /* Alertas Estilizados */
+        .alert {
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            border-left: 5px solid;
+            border-right: 1px solid;
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+        }
+
+        .deadzone-alert {
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.15), rgba(72, 187, 120, 0.05));
+            border-left-color: var(--radioactive);
+            border-color: rgba(72, 187, 120, 0.2);
+        }
+
+        .mercado-alert {
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.15), rgba(66, 153, 225, 0.05));
+            border-left-color: var(--accent);
+            border-color: rgba(66, 153, 225, 0.2);
+        }
+
+        .construction-alert {
+            background: linear-gradient(135deg, rgba(159, 122, 234, 0.15), rgba(159, 122, 234, 0.05));
+            border-left-color: var(--construction);
+            border-color: rgba(159, 122, 234, 0.2);
+        }
+
+        .alert-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .deadzone-alert .alert-icon {
+            color: var(--radioactive);
+        }
+
+        .mercado-alert .alert-icon {
+            color: var(--accent);
+        }
+
+        .construction-alert .alert-icon {
+            color: var(--construction);
+        }
+
+        .alert-content {
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .alert strong {
+            font-weight: 700;
+        }
+
+        .deadzone-alert strong {
+            color: var(--radioactive);
+        }
+
+        .mercado-alert strong {
+            color: var(--accent);
+        }
+
+        .construction-alert strong {
+            color: var(--construction);
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, rgba(237, 137, 54, 0.15), rgba(237, 137, 54, 0.05));
+            border-left: 5px solid var(--warning);
+            border-color: rgba(237, 137, 54, 0.2);
+        }
+
+        .alert-warning .alert-icon {
+            color: var(--warning);
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, rgba(245, 101, 101, 0.15), rgba(245, 101, 101, 0.05));
+            border-left: 5px solid var(--danger);
+            border-color: rgba(245, 101, 101, 0.2);
+        }
+
+        .alert-danger .alert-icon {
+            color: var(--danger);
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.15), rgba(72, 187, 120, 0.05));
+            border-left: 5px solid var(--success);
+            border-color: rgba(72, 187, 120, 0.2);
+        }
+
+        .alert-success .alert-icon {
+            color: var(--success);
+        }
+
         /* LIGHTBOX */
         .lightbox {
             display: none;
@@ -1642,10 +2323,12 @@
                 margin-right: 12px;
             }
             
-            /* Deadzone e NPC items - vertical em mobile */
+            /* Deadzone, NPC e Material items - vertical em mobile */
             .deadzone-item,
             .npc-item,
-            .door-item-special {
+            .door-item-special,
+            .material-item,
+            .sentry-item {
                 flex-direction: column;
                 min-height: auto;
             }
@@ -1676,14 +2359,24 @@
             
             .deadzone-content,
             .npc-content,
-            .door-content-special {
+            .door-content-special,
+            .material-content,
+            .sentry-content {
                 padding: 20px;
             }
             
             .deadzone-name,
             .npc-name,
-            .door-name-special {
+            .door-name-special,
+            .material-name,
+            .sentry-name {
                 font-size: 20px;
+            }
+            
+            /* Woods grid - 1 coluna em mobile */
+            .woods-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
             
             /* Equipment grid - 1 coluna em mobile */
@@ -1697,8 +2390,25 @@
                 height: 140px;
             }
             
+            /* Tools grid - 1 coluna em mobile */
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .tool-image {
+                width: 140px;
+                height: 140px;
+            }
+            
             /* Info cards - 1 coluna em mobile */
             .info-cards {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            /* Tips grid - 1 coluna em mobile */
+            .tips-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
@@ -1752,6 +2462,39 @@
             .door-tool-name {
                 font-size: 10px;
                 max-width: 70px;
+            }
+            
+            /* Craft items ajustado */
+            .craft-items {
+                gap: 10px;
+            }
+            
+            .craft-image {
+                width: 70px;
+                height: 70px;
+            }
+            
+            /* Protection schedule - vertical */
+            .protection-schedule {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            /* Cupboard content - vertical */
+            .cupboard-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cupboard-image-container {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+            
+            .cupboard-image {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
             }
             
             /* Alertas ajustados */
@@ -1875,8 +2618,16 @@
                 gap: 25px;
             }
             
+            .woods-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
             .info-cards {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -1897,7 +2648,9 @@
             
             .deadzone-name,
             .npc-name,
-            .door-name-special {
+            .door-name-special,
+            .material-name,
+            .sentry-name {
                 font-size: 18px;
             }
             
@@ -1905,6 +2658,15 @@
             .npc-role {
                 font-size: 11px;
                 padding: 5px 12px;
+            }
+            
+            .wood-name {
+                font-size: 18px;
+            }
+            
+            .wood-status {
+                font-size: 12px;
+                padding: 6px 15px;
             }
             
             .deadzone-image-container,
@@ -1933,6 +2695,10 @@
                 font-size: 16px;
             }
             
+            .tool-name {
+                font-size: 18px;
+            }
+            
             .loot-grid {
                 grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
             }
@@ -1945,6 +2711,20 @@
             .door-tool-image {
                 width: 60px;
                 height: 60px;
+            }
+            
+            .craft-image {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .time-circle {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .time-range {
+                font-size: 14px;
             }
             
             .update-notification {
@@ -2106,6 +2886,10 @@
                     <button class="tab-button" data-tab="mercado">
                         <i class="fas fa-coins"></i>
                         Mercado Negro
+                    </button>
+                    <button class="tab-button" data-tab="construcao">
+                        <i class="fas fa-hammer"></i>
+                        Construção
                     </button>
                 </div>
             </div>
@@ -3076,6 +3860,715 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Guia de Construção -->
+            <div id="construcao" class="tab-content">
+                <div class="guide-header">
+                    <div class="header-image" data-lightbox="header" data-caption="Sistema de Construção" data-type="header-image">
+                        <img src="Fotos/building.png" alt="Sistema de Construção">
+                    </div>
+                    <div class="header-content">
+                        <div class="guide-badge construction-badge">
+                            <i class="fas fa-shield-alt" style="margin-right: 8px;"></i>
+                            GUIA COMPLETO
+                        </div>
+                        <h1 class="guide-title">CONSTRUÇÃO & PROTEÇÃO</h1>
+                        <p class="guide-subtitle">
+                            Guia completo de materiais de construção, reforços, sentries e sistema de proteção contra raids. 
+                            Aprenda a construir bases impenetráveis e proteger seus recursos
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Madeiras de Construção -->
+                <div class="guide-section">
+                    <div class="section-header construction-section-header">
+                        <div class="section-icon construction-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h2 class="section-title">Madeiras de Construção</h2>
+                    </div>
+                    
+                    <p style="color: var(--text-light); font-size: 16px; margin-bottom: 25px; line-height: 1.6;">
+                        As madeiras variam em resistência e durabilidade. Escolha a correta para cada fase do seu progresso
+                    </p>
+                    
+                    <div class="woods-grid">
+                        <!-- Pine -->
+                        <div class="wood-item best">
+                            <div class="wood-image" data-lightbox="pine" data-caption="Pine Wood - A madeira mais resistente" data-type="wood-image">
+                                <img src="Fotos/pine.png" alt="Pine Wood">
+                            </div>
+                            <div class="wood-name">Pine</div>
+                            <div class="wood-status">MELHOR</div>
+                            <p style="color: var(--text-light); margin-top: 15px; font-size: 14px;">
+                                A madeira mais resistente disponível
+                            </p>
+                        </div>
+                        
+                        <!-- Maple -->
+                        <div class="wood-item medium">
+                            <div class="wood-image" data-lightbox="maple" data-caption="Maple Wood - Madeira com defesa mediana" data-type="wood-image">
+                                <img src="Fotos/maple.png" alt="Maple Wood">
+                            </div>
+                            <div class="wood-name">Maple</div>
+                            <div class="wood-status">MEDIANA</div>
+                            <p style="color: var(--text-light); margin-top: 15px; font-size: 14px;">
+                                Madeira com defesa mediana
+                            </p>
+                        </div>
+                        
+                        <!-- Birch -->
+                        <div class="wood-item worst">
+                            <div class="wood-image" data-lightbox="birch" data-caption="Birch Wood - A madeira mais básica e frágil" data-type="wood-image">
+                                <img src="Fotos/birch.png" alt="Birch Wood">
+                            </div>
+                            <div class="wood-name">Birch</div>
+                            <div class="wood-status">PIOR</div>
+                            <p style="color: var(--text-light); margin-top: 15px; font-size: 14px;">
+                                A madeira mais básica e frágil
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Materiais de Construção Avançados -->
+                <div class="guide-section">
+                    <div class="section-header construction-section-header">
+                        <div class="section-icon construction-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h2 class="section-title">Materiais de Construção Avançados</h2>
+                    </div>
+                    
+                    <p style="color: var(--text-light); font-size: 16px; margin-bottom: 25px; line-height: 1.6;">
+                        Progressão de materiais para bases cada vez mais seguras. Do metal básico ao reforçado, cada upgrade oferece mais proteção
+                    </p>
+                    
+                    <div class="materials-list">
+                        <!-- Metal -->
+                        <div class="material-item metal">
+                            <div class="material-content">
+                                <div class="material-header">
+                                    <h3 class="material-name">METAL</h3>
+                                </div>
+                                <div class="material-description">
+                                    <p><strong>MELHOR QUE QUALQUER MADEIRA</strong></p>
+                                    <p>Primeiro upgrade após as madeiras. Oferece proteção significativamente superior e é essencial para bases intermediárias</p>
+                                    <ul>
+                                        <li>Estruturas são construídas com Metal Sheet</li>
+                                        <li>Farm fácil em Keryev</li>
+                                        <li>Durabilidade muito superior às madeiras</li>
+                                        <li>Ideal para grupos pequenos ou jogadores solos</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="craft-box">
+                                    <div class="craft-title">Recursos Necessários:</div>
+                                    <div class="craft-items">
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="scrap" data-caption="Metal Scrap - Para fazer Metal Sheet" data-type="craft-image">
+                                                <img src="Fotos/scrap.png" alt="Metal Scrap">
+                                            </div>
+                                            <div class="craft-name">Metal Scrap</div>
+                                            <div class="craft-quantity">×2 por Metal Sheet</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bricks -->
+                        <div class="material-item bricks">
+                            <div class="material-content">
+                                <div class="material-header">
+                                    <h3 class="material-name">BRICKS</h3>
+                                </div>
+                                <div class="material-description">
+                                    <p><strong>MELHOR QUE METAL</strong></p>
+                                    <p>Material de construção avançado que oferece excelente proteção contra Raids convencionais</p>
+                                    <ul>
+                                        <li>Proteção superior ao metal básico</li>
+                                        <li>Mais difícil de ser destruído em Raids</li>
+                                        <li>Requer craft específico</li>
+                                        <li>Ideal para bases de clãs médios</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="craft-box">
+                                    <div class="craft-title">Craft de Bricks:</div>
+                                    <div class="craft-items">
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="scrap2" data-caption="Metal Scrap - Para fazer Bricks" data-type="craft-image">
+                                                <img src="Fotos/scrap.png" alt="Metal Scrap">
+                                            </div>
+                                            <div class="craft-name">Metal Scrap</div>
+                                            <div class="craft-quantity">×5 por Brick</div>
+                                        </div>
+                                        <div class="craft-arrow">+</div>
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="blow" data-caption="Blowtorch - Ferramenta necessária" data-type="craft-image">
+                                                <img src="Fotos/blow.png" alt="Blowtorch">
+                                            </div>
+                                            <div class="craft-name">Blowtorch</div>
+                                            <div class="craft-quantity">Não gasta</div>
+                                        </div>
+                                        <div class="craft-arrow">+</div>
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="zbricks" data-caption="Fonte de calor - Exemplo: Fogueira" data-type="craft-image">
+                                                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.9); border-radius: 8px;">
+                                                    <span style="font-size: 24px; color: var(--text);">🔥</span>
+                                                </div>
+                                            </div>
+                                            <div class="craft-name">Fonte de calor</div>
+                                            <div class="craft-quantity">Ex.: Fogueira</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Metal Reforçado -->
+                        <div class="material-item reinforced">
+                            <div class="material-content">
+                                <div class="material-header">
+                                    <h3 class="material-name">METAL REFORÇADO</h3>
+                                </div>
+                                <div class="material-description">
+                                    <p><strong>MELHOR DO JOGO</strong></p>
+                                    <p>O material de construção definitivo. Extremamente resistente e difícil de ser comprometido em Raids</p>
+                                    <ul>
+                                        <li>Resistência máxima contra ataques</li>
+                                        <li>Requer uma Farm maior de recursos</li>
+                                        <li>Ideal para bases de clãs grandes</li>
+                                        <li>Dificulta significativamente os ataques de inimigos</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="craft-box">
+                                    <div class="craft-title">Requisitos por Construção Reforçada:</div>
+                                    <div class="craft-items">
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="sheetstack" data-caption="Stacked Sheet - Para construção reforçada" data-type="craft-image">
+                                                <img src="Fotos/sheetstack.png" alt="Stacked Sheet">
+                                            </div>
+                                            <div class="craft-name">Stacked Sheet</div>
+                                            <div class="craft-quantity">×2</div>
+                                        </div>
+                                        <div class="craft-arrow">+</div>
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="bag" data-caption="Cement Bag - Para construção reforçada" data-type="craft-image">
+                                                <img src="Fotos/bag.png" alt="Cement Bag">
+                                            </div>
+                                            <div class="craft-name">Cement Bag</div>
+                                            <div class="craft-quantity">×5</div>
+                                        </div>
+                                        <div class="craft-arrow">+</div>
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="sled" data-caption="Sledgehammer - Ferramenta necessária" data-type="craft-image">
+                                                <img src="Fotos/sled.png" alt="Sledgehammer">
+                                            </div>
+                                            <div class="craft-name">Sledgehammer</div>
+                                            <div class="craft-quantity">Não gasta</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="craft-box" style="margin-top: 20px;">
+                                    <div class="craft-title">Recursos Por Cement Bag:</div>
+                                    <div class="craft-items">
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="zbricks2" data-caption="Bricks - Para fazer Cement Bag" data-type="craft-image">
+                                                <img src="Fotos/zbricks.png" alt="Bricks">
+                                            </div>
+                                            <div class="craft-name">Bricks</div>
+                                            <div class="craft-quantity">×2</div>
+                                        </div>
+                                        <div class="craft-arrow">+</div>
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="Cloth" data-caption="Cloth - Para fazer Cement Bag" data-type="craft-image">
+                                                <img src="Fotos/cloth.png" alt="Cloth">
+                                            </div>
+                                            <div class="craft-name">Cloth</div>
+                                            <div class="craft-quantity">×5</div>
+                                        </div>
+                                        <div class="craft-arrow">+</div>
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="sled2" data-caption="Sledgehammer - Ferramenta necessária" data-type="craft-image">
+                                                <img src="Fotos/sled.png" alt="Sledgehammer">
+                                            </div>
+                                            <div class="craft-name">Sledgehammer</div>
+                                            <div class="craft-quantity">Não gasta</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ferramentas -->
+                <div class="construction-section">
+                    <div class="construction-header">
+                        <div class="construction-icon-large">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="construction-title">Ferramentas para Variantes e Melhorias</h3>
+                    </div>
+                    
+                    <p style="color: var(--text-light); font-size: 16px; text-align: center; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        Cada ferramenta permite criar variantes específicas de estruturas. Essenciais para construção avançada e personalização de bases
+                    </p>
+                    
+                    <div class="tools-grid">
+                        <!-- Saw -->
+                        <div class="tool-item">
+                            <div class="tool-image" data-lightbox="bbsaw" data-caption="Saw - Para variantes de madeira" data-type="tool-image">
+                                <img src="Fotos/bbsaw.png" alt="Saw">
+                            </div>
+                            <div class="tool-name">Saw</div>
+                            <div class="tool-description">
+                                Ferramenta especializada para criar variantes de estruturas de madeira. Permite maior customização e eficiência na construção com materiais de madeira
+                            </div>
+                        </div>
+                        
+                        <!-- Sledgehammer -->
+                        <div class="tool-item">
+                            <div class="tool-image" data-lightbox="sled3" data-caption="Sledgehammer - Para construção reforçada" data-type="tool-image">
+                                <img src="Fotos/sled.png" alt="Sledgehammer">
+                            </div>
+                            <div class="tool-name">Sledgehammer</div>
+                            <div class="tool-description">
+                                Ferramenta pesada essencial para construção com materiais avançados. Necessária para criar estruturas de metal reforçado
+                            </div>
+                        </div>
+                        
+                        <!-- Blowtorch -->
+                        <div class="tool-item">
+                            <div class="tool-image" data-lightbox="blow2" data-caption="Blowtorch - Ferramenta mais útil" data-type="tool-image">
+                                <img src="Fotos/blow.png" alt="Blowtorch">
+                            </div>
+                            <div class="tool-name">Blowtorch</div>
+                            <div class="tool-description">
+                                Ferramenta mais útil do jogo. Permite criar variantes de estruturas de metal comum e reforçado, além de realizar reparos
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning mt-30">
+                        <div class="alert-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="alert-content">
+                            <strong>DICA:</strong> As ferramentas <strong>NÃO GASTAM</strong> ao serem usadas
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sentries -->
+                <div class="guide-section">
+                    <div class="section-header construction-section-header">
+                        <div class="section-icon construction-icon">
+                            <i class="fas fa-crosshairs"></i>
+                        </div>
+                        <h2 class="section-title">Sistema de Sentries</h2>
+                    </div>
+                    
+                    <p style="color: var(--text-light); font-size: 16px; margin-bottom: 25px; line-height: 1.6;">
+                        Todas as sentries são feitas com <strong>Rangefinder</strong>. Protegem sua base
+                    </p>
+                    
+                    <div class="sentries-list">
+                        <!-- Sentries Básicas -->
+                        <div class="sentry-item">
+                            <div class="sentry-content">
+                                <div class="sentry-header">
+                                    <h3 class="sentry-name">SENTRIES BÁSICAS</h3>
+                                </div>
+                                <div class="sentry-description">
+                                    <p>As três sentries básicas são essencialmente a mesma, só mudam a cor. Use <strong>Blowtorch</strong> para alternar entre elas</p>
+                                    <ul>
+                                        <li><strong>Hostile Sentry:</strong> Atira em tudo que se move - a mais útil</li>
+                                        <li><strong>Neutral Sentry:</strong> Não atira em jogadores com braços levantados</li>
+                                        <li><strong>Friendly Sentry:</strong> Só atira em quem equipa algum item</li>
+                                    </ul>
+                                    <div class="craft-items" style="margin-top: 20px;">
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="sentryh" data-caption="Sentry Hostile - Atira em tudo" data-type="craft-image">
+                                                <img src="Fotos/sentryh.png" alt="Sentry Hostile">
+                                            </div>
+                                            <div class="craft-name">Hostile</div>
+                                            <div class="craft-name">Sentry</div>
+                                        </div>
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="sentryn" data-caption="Sentry Neutral - Só atira em hostis" data-type="craft-image">
+                                                <img src="Fotos/sentryn.png" alt="Sentry Neutral">
+                                            </div>
+                                            <div class="craft-name">Neutral</div>
+                                            <div class="craft-name">Sentry</div>
+                                        </div>
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="sentryf" data-caption="Sentry Friendly - Só atira em quem equipa item" data-type="craft-image">
+                                                <img src="Fotos/sentryf.png" alt="Sentry Friendly">
+                                            </div>
+                                            <div class="craft-name">Friendly</div>
+                                            <div class="craft-name">Sentry</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sentry Reforçada -->
+                        <div class="sentry-item">
+                            <div class="sentry-content">
+                                <div class="sentry-header">
+                                    <h3 class="sentry-name">SENTRY REFORÇADA</h3>
+                                </div>
+                                <div class="sentry-description">
+                                    <p><strong>Muito mais vida que a normal</strong>. Feita a partir de uma Sentry Hostile</p>
+                                    <ul>
+                                        <li>Requer uma Sentry Hostile + 2 Stacks de Metal Sheet + Blowtorch</li>
+                                        <li>Resistência muito superior às normais</li>
+                                        <li>Ideal para defesa de bases importantes</li>
+                                    </ul>
+                                    <div class="craft-items" style="margin-top: 20px;">
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="sentryhe" data-caption="Sentry Heavy - Muito mais vida" data-type="craft-image">
+                                                <img src="Fotos/sentryhe.png" alt="Sentry Heavy">
+                                            </div>
+                                            <div class="craft-name">Heavy</div>
+                                            <div class="craft-name">Sentry</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sentry Autocannon -->
+                        <div class="sentry-item">
+                            <div class="sentry-content">
+                                <div class="sentry-header">
+                                    <h3 class="sentry-name">SENTRY AUTOCANNON</h3>
+                                </div>
+                                <div class="sentry-description">
+                                    <p><strong>Encontrada apenas em locais militares e Deadzones</strong>. Tem espaço para Minigun ou Autocannon</p>
+                                    <ul>
+                                        <li>Menos vida que a Reforçada, mas suporta armas pesadas</li>
+                                        <li>Autocannon mata com 2 tiros, dano em área, munição infinita</li>
+                                        <li>Montagem do Autocannon requer vários componentes especiais</li>
+                                    </ul>
+                                    <div class="craft-box" style="margin-top: 20px; border-left-color: var(--danger);">
+                                        <div class="craft-items">
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="sentryca" data-caption="Autocannon Body - Corpo da sentry" data-type="craft-image">
+                                                    <img src="Fotos/sentryca.png" alt="Autocannon Body">
+                                                </div>
+                                                <div class="craft-name">Autocannon Body</div>
+                                            </div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="autoca" data-caption="Autocannon Box - Caixa da arma" data-type="craft-image">
+                                                    <img src="Fotos/autoca.png" alt="Autocannon Box">
+                                                </div>
+                                                <div class="craft-name">Autocannon Box</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="craft-box" style="margin-top: 20px; border-left-color: var(--danger);">
+                                        <div class="craft-title" style="color: var(--danger);">Craft do Autocannon:</div>
+                                        <div class="craft-items">
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="cabody" data-caption="Autocannon Body - Corpo principal" data-type="craft-image">
+                                                    <img src="Fotos/cabody.png" alt="Autocannon Body">
+                                                </div>
+                                                <div class="craft-name">Autocannon Body</div>
+                                            </div>
+                                            <div class="craft-arrow">+</div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="cabox" data-caption="Autocannon Box - Caixa da arma" data-type="craft-image">
+                                                    <img src="Fotos/cabox.png" alt="Autocannon Box">
+                                                </div>
+                                                <div class="craft-name">Autocannon Box</div>
+                                            </div>
+                                            <div class="craft-arrow">+</div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="laser" data-caption="Tactical Laser - Para mira" data-type="craft-image">
+                                                    <img src="Fotos/laser.png" alt="Tactical Laser">
+                                                </div>
+                                                <div class="craft-name">Tactical Laser</div>
+                                            </div>
+                                            <div class="craft-arrow">+</div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="scrap3" data-caption="Metal Scrap - Para montagem" data-type="craft-image">
+                                                    <img src="Fotos/scrap.png" alt="Metal Scrap">
+                                                </div>
+                                                <div class="craft-name">Metal Scrap</div>
+                                                <div class="craft-quantity">×10</div>
+                                            </div>
+                                            <div class="craft-arrow">+</div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="blow3" data-caption="Blowtorch - Para montagem" data-type="craft-image">
+                                                    <img src="Fotos/blow.png" alt="Blowtorch">
+                                                </div>
+                                                <div class="craft-name">Blowtorch</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sentry UFO -->
+                        <div class="sentry-item">
+                            <div class="sentry-content">
+                                <div class="sentry-header">
+                                    <h3 class="sentry-name">SENTRY UFO</h3>
+                                </div>
+                                <div class="sentry-description">
+                                    <p><strong>Item de missão do Dobs</strong>. Desbloqueada após pegar a blueprint e completar a missão final</p>
+                                    <ul>
+                                        <li>Fornece munição infinita para qualquer arma colocada nela</li>
+                                        <li>Blueprint avançada (não mostrarei craft aqui)</li>
+                                        <li>Melhor sentry do jogo</li>
+                                    </ul>
+                                    <div class="craft-items" style="margin-top: 20px;">
+                                        <div class="craft-item">
+                                            <div class="craft-image" data-lightbox="ufos" data-caption="Sentry UFO - Melhor sentry do jogo" data-type="craft-image">
+                                                <img src="Fotos/ufos.png" alt="Sentry UFO">
+                                            </div>
+                                            <div class="craft-name">Sentry UFO</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sistema de Proteção -->
+                <div class="guide-section">
+                    <div class="section-header construction-section-header">
+                        <div class="section-icon construction-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h2 class="section-title">Sistema de Proteção</h2>
+                    </div>
+                    
+                    <div class="alert alert-danger">
+                        <div class="alert-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <strong>Para manter o servidor limpo de estruturas abandonadas, ele possui um sistema de <strong>Decay</strong> que remove estruturas abandonadas com o tempo, se não forem protegidas</strong>
+                        </div>
+                    </div>
+                    
+                    <!-- Tabela de Proteção -->
+                    <div class="protection-table-container">
+                        <h3 style="color: var(--text); font-size: 20px; margin-bottom: 20px; text-align: center;">🛡️ Proteção de Raid por Tamanho de Grupo</h3>
+                        
+                        <table class="protection-table">
+                            <thead>
+                                <tr>
+                                    <th>Tamanho do Grupo</th>
+                                    <th>Proteção Offline</th>
+                                    <th>Proteção Online</th>
+                                    <th>Tempo Limite Off</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Jogadores Solo</strong></td>
+                                    <td><span class="protection-badge badge-success">100% Proteção</span></td>
+                                    <td><span class="protection-badge badge-warning">50% Proteção</span></td>
+                                    <td>Depois de 3 dias</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grupo até 3 pessoas</strong></td>
+                                    <td><span class="protection-badge badge-success">100% Proteção</span></td>
+                                    <td><span class="protection-badge badge-warning">50% Proteção</span></td>
+                                    <td>Depois de 3 dias</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grupo 4 até 6 pessoas</strong></td>
+                                    <td><span class="protection-badge badge-success">100% Proteção</span></td>
+                                    <td><span class="protection-badge badge-info">Não Aplicada</span></td>
+                                    <td>Depois de 2 dias</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grupo 7 até 9 pessoas</strong></td>
+                                    <td><span class="protection-badge badge-warning">50% Proteção</span></td>
+                                    <td><span class="protection-badge badge-info">Não Aplicada</span></td>
+                                    <td>Depois de 1 dia</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Grupo 10+ pessoas</strong></td>
+                                    <td><span class="protection-badge badge-danger">Nenhuma Proteção</span></td>
+                                    <td><span class="protection-badge badge-info">Não Aplicada</span></td>
+                                    <td>Depois de 12 horas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Horários de Proteção -->
+                    <h3 style="color: var(--text); font-size: 20px; margin: 40px 0 20px 0; text-align: center;">Horários de Proteção - Horário de Brasília</h3>
+                    
+                    <div class="protection-schedule">
+                        <!-- Horário Noturno -->
+                        <div class="time-slot night-time">
+                            <div class="time-name">Horário Noturno</div>
+                            <div class="time-circle">
+                                <div class="time-range">00:00 - 13:00</div>
+                            </div>
+                            <div class="time-description">
+                                <p><strong>Proteção total para todos</strong></p>
+                                <p>Proteção ativa após 5 minutos offline</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Horário Diurno -->
+                        <div class="time-slot day-time">
+                            <div class="time-name">Horário Diurno</div>
+                            <div class="time-circle">
+                                <div class="time-range">13:00 - 00:00</div>
+                            </div>
+                            <div class="time-description">
+                                <p><strong>Aplica-se regras do grupo</strong></p>
+                                <p>Proteção ativa após 15 minutos offline do grupo inteiro</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tool Cupboard -->
+                <div class="guide-section">
+                    <div class="section-header construction-section-header">
+                        <div class="section-icon construction-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h2 class="section-title">Tool Cupboard</h2>
+                    </div>
+                    
+                    <div class="cupboard-content">
+                        <div class="cupboard-image-container">
+                            <div class="cupboard-image" data-lightbox="cup" data-caption="Tool Cupboard - Ativa a proteção da base" data-type="cupboard-image">
+                                <img src="Fotos/cup.png" alt="Tool Cupboard">
+                            </div>
+                        </div>
+                        
+                        <div class="cupboard-info">
+                            <h3 style="color: var(--success); font-size: 22px; margin-bottom: 15px;">Como Ativar a Proteção</h3>
+                            <div class="sentry-description">
+                                <p>Para que sua base fique protegida contra Raids e decay, é necessário colocar um <strong>Tool Cupboard</strong> em sua base</p>
+                                <ul>
+                                    <li>Use <code>/kit Base</code> para receber um Tool Cupboard</li>
+                                    <li>Coloque-o dentro da sua base para ativar a proteção</li>
+                                    <li>Mantenha-o para garantir os benefícios da Proteção de Raid</li>
+                                    <li>Ele evita que sua base desapareça com o Decay</li>
+                                </ul>
+                                
+                                <div class="cupboard-commands">
+                                    <div class="command-item">
+                                        <div class="command-name">Comando: <code>/cl</code></div>
+                                        <div class="command-description">Veja seus limites de Tool Cupboards</div>
+                                    </div>
+                                    
+                                    <div class="command-item">
+                                        <div class="command-name">Comando: <code>/destroy Tool</code></div>
+                                        <div class="command-description">Destroi todos os seus Tool Cupboards (volta para inventário!)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-success mt-30">
+                        <div class="alert-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <strong>IMPORTANTE:</strong> Mantenha o Tool Cupboard dentro de suas construções para garantir que sua base receba os benefícios da <strong>Proteção de Raid</strong> e não desapareça com o <strong>Decay</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dicas Finais -->
+                <div class="guide-section">
+                    <div class="section-header construction-section-header">
+                        <div class="section-icon construction-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h2 class="section-title">Dicas e Estratégias</h2>
+                    </div>
+                    
+                    <div class="tips-grid">
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <h3 class="tip-title">Estratégia de Camadas</h3>
+                            <div class="tip-content">
+                                <ul>
+                                    <li><strong>Camada Externa:</strong> Metal Reforçado ou Bricks</li>
+                                    <li><strong>Camada Interna:</strong> Metal básico</li>
+                                    <li><strong>Núcleo:</strong> Metal Reforçado para salas importantes</li>
+                                    <li><strong>Teto:</strong> Nunca negligencie a proteção do teto</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <h3 class="tip-title">Gestão de Grupo</h3>
+                            <div class="tip-content">
+                                <ul>
+                                    <li><strong>Solo/Duo:</strong> Aproveite a proteção 100% offline</li>
+                                    <li><strong>Grupos médios:</strong> Organize turnos online</li>
+                                    <li><strong>Clãs grandes:</strong> Invista em defesas físicas</li>
+                                    <li><strong>Farm coletivo:</strong> Designe membros específicos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <h3 class="tip-title">Gestão de Horários</h3>
+                            <div class="tip-content">
+                                <ul>
+                                    <li><strong>Logins:</strong> Priorize horário noturno (00:00-13:00)</li>
+                                    <li><strong>Farm noturno:</strong> Mais segurança com proteção 100%</li>
+                                    <li><strong>Rotação:</strong> Em grupos grandes, faça rodízio</li>
+                                    <li><strong>Ausências:</strong> Avise seu grupo se for ficar offline</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alertas Finais -->
+                <div class="alert alert-danger mt-30">
+                    <div class="alert-icon">
+                        <i class="fas fa-radiation-alt"></i>
+                    </div>
+                    <div class="alert-content">
+                        <strong>ALERTA CRÍTICO:</strong> Sem o Tool Cupboard, sua base <strong>NÃO TEM PROTEÇÃO</strong> e desaparecerá com o Decay após o tempo limite correspondente ao seu tamanho de grupo
+                    </div>
+                </div>
+
+                <div class="alert alert-warning mt-20">
+                    <div class="alert-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="alert-content">
+                        <strong>LEMBRETE:</strong> Durante o dia (13:00-00:00), a proteção do grupo só ativa após <strong>15 minutos offline</strong>. Durante a noite (00:00-13:00), a proteção 100% ativa após <strong>5 minutos offline</strong>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -3336,7 +4829,7 @@
 
         // Sistema de Atualização Automática
         function initAutoUpdate() {
-            const VERSION = '2.0.1'; // Atualize esta versão quando fizer mudanças
+            const VERSION = '2.1.0'; // Atualize esta versão quando fizer mudanças
             const CHECK_INTERVAL = 5 * 60 * 1000; // 5 minutos
             
             // Verificar atualizações
