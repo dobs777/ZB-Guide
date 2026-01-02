@@ -30,6 +30,10 @@
             --construction: #9f7aea;
             --bricks: #f56565;
             --reinforced: #805ad5;
+            --sentry-basic: #4299e1;
+            --sentry-heavy: #ed8936;
+            --sentry-auto: #f56565;
+            --sentry-ufo: #9f7aea;
         }
 
         * {
@@ -484,7 +488,7 @@
             background: linear-gradient(135deg, var(--danger) 0%, #e53e3e 100%);
         }
 
-        /* Lista de Materiais */
+        /* Lista de Materiais - NOVA VERSÃO COM FOTOS */
         .materials-list {
             display: flex;
             flex-direction: column;
@@ -512,6 +516,47 @@
         .material-content {
             padding: 25px;
             display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        .material-image-container {
+            flex: 0 0 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .material-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .material-image:hover {
+            transform: scale(1.03);
+        }
+
+        .material-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .material-info {
+            flex: 1;
+            display: flex;
             flex-direction: column;
         }
 
@@ -523,7 +568,7 @@
         }
 
         .material-name {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
         }
 
@@ -690,59 +735,166 @@
             line-height: 1.6;
         }
 
-        /* Sentries */
-        .sentries-list {
+        /* SENTRIES - NOVO LAYOUT (ESTILO DAS PORTAS) */
+        .sentry-list-special {
             display: flex;
             flex-direction: column;
             gap: 30px;
-            margin: 30px 0;
+            margin: 25px 0;
         }
 
-        .sentry-item {
-            background: rgba(30, 41, 59, 0.6);
+        .sentry-item-special {
+            display: flex;
+            background: rgba(15, 23, 42, 0.6);
             border-radius: 20px;
             overflow: hidden;
             border: 2px solid var(--border);
             transition: all 0.4s ease;
+            min-height: 250px;
         }
 
-        .sentry-item:hover {
+        .sentry-item-special:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
-        .sentry-content {
-            padding: 25px;
-        }
+        .sentry-item-special.basic:hover { border-color: var(--sentry-basic); }
+        .sentry-item-special.heavy:hover { border-color: var(--sentry-heavy); }
+        .sentry-item-special.autocannon:hover { border-color: var(--sentry-auto); }
+        .sentry-item-special.ufo:hover { border-color: var(--sentry-ufo); }
 
-        .sentry-header {
+        .sentry-image-container {
+            flex: 0 0 250px;
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            gap: 15px;
+            justify-content: center;
+            padding: 30px;
+            background: rgba(15, 23, 42, 0.7);
+            position: relative;
         }
 
-        .sentry-name {
+        .sentry-main-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid rgba(159, 122, 234, 0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .sentry-item-special.basic .sentry-main-image { border-color: var(--sentry-basic); }
+        .sentry-item-special.heavy .sentry-main-image { border-color: var(--sentry-heavy); }
+        .sentry-item-special.autocannon .sentry-main-image { border-color: var(--sentry-auto); }
+        .sentry-item-special.ufo .sentry-main-image { border-color: var(--sentry-ufo); }
+
+        .sentry-main-image:hover {
+            transform: scale(1.05);
+        }
+
+        .sentry-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .sentry-content-special {
+            flex: 1;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .sentry-name-special {
             font-size: 22px;
             font-weight: 800;
-            color: var(--alien);
+            margin-bottom: 12px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
-        .sentry-description {
+        .sentry-item-special.basic .sentry-name-special { color: var(--sentry-basic); }
+        .sentry-item-special.heavy .sentry-name-special { color: var(--sentry-heavy); }
+        .sentry-item-special.autocannon .sentry-name-special { color: var(--sentry-auto); }
+        .sentry-item-special.ufo .sentry-name-special { color: var(--sentry-ufo); }
+
+        .sentry-description-special {
             color: var(--text-light);
             line-height: 1.6;
             font-size: 15px;
             margin-bottom: 20px;
         }
 
-        .sentry-description ul {
-            padding-left: 20px;
-            margin: 15px 0;
+        .sentry-craft-container {
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            border-left: 4px solid;
         }
 
-        .sentry-description li {
-            margin-bottom: 8px;
-            position: relative;
+        .sentry-item-special.basic .sentry-craft-container { border-left-color: var(--sentry-basic); }
+        .sentry-item-special.heavy .sentry-craft-container { border-left-color: var(--sentry-heavy); }
+        .sentry-item-special.autocannon .sentry-craft-container { border-left-color: var(--sentry-auto); }
+        .sentry-item-special.ufo .sentry-craft-container { border-left-color: var(--sentry-ufo); }
+
+        .sentry-craft-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .sentry-item-special.basic .sentry-craft-title { color: var(--sentry-basic); }
+        .sentry-item-special.heavy .sentry-craft-title { color: var(--sentry-heavy); }
+        .sentry-item-special.autocannon .sentry-craft-title { color: var(--sentry-auto); }
+        .sentry-item-special.ufo .sentry-craft-title { color: var(--sentry-ufo); }
+
+        .sentry-craft-items {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .sentry-craft-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .sentry-craft-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .sentry-craft-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.9);
+            margin-bottom: 6px;
+        }
+
+        .sentry-item-special.basic .sentry-craft-image { border-color: var(--sentry-basic); }
+        .sentry-item-special.heavy .sentry-craft-image { border-color: var(--sentry-heavy); }
+        .sentry-item-special.autocannon .sentry-craft-image { border-color: var(--sentry-auto); }
+        .sentry-item-special.ufo .sentry-craft-image { border-color: var(--sentry-ufo); }
+
+        .sentry-craft-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text);
+            max-width: 80px;
+            line-height: 1.3;
         }
 
         /* Tabela de Proteção */
@@ -880,30 +1032,56 @@
             max-width: 200px;
         }
 
-        /* Tool Cupboard */
-        .cupboard-content {
+        /* Tool Cupboard & Blueprint - NOVO LAYOUT */
+        .cupboard-section {
             display: flex;
-            align-items: center;
             gap: 30px;
             margin: 30px 0;
             flex-wrap: wrap;
         }
 
+        .cupboard-item {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .cupboard-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .cupboard-item.tool { border-color: var(--success); }
+        .cupboard-item.blueprint { border-color: var(--accent); }
+
         .cupboard-image-container {
-            flex: 0 0 250px;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .cupboard-image {
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
             border-radius: 15px;
             overflow: hidden;
-            border: 3px solid rgba(72, 187, 120, 0.3);
+            border: 3px solid;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .cupboard-item.tool .cupboard-image { border-color: var(--success); }
+        .cupboard-item.blueprint .cupboard-image { border-color: var(--accent); }
+
+        .cupboard-image:hover {
+            transform: scale(1.05);
         }
 
         .cupboard-image img {
@@ -912,26 +1090,44 @@
             object-fit: contain;
         }
 
-        .cupboard-info {
-            flex: 1;
-            min-width: 300px;
+        .cupboard-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .cupboard-item.tool .cupboard-title { color: var(--success); }
+        .cupboard-item.blueprint .cupboard-title { color: var(--accent); }
+
+        .cupboard-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 20px;
         }
 
         .cupboard-commands {
             background: rgba(15, 23, 42, 0.4);
             border-radius: 12px;
-            padding: 20px;
-            border-left: 4px solid var(--success);
-            margin-top: 20px;
+            padding: 15px;
+            border-left: 4px solid;
+            margin-top: 15px;
         }
+
+        .cupboard-item.tool .cupboard-commands { border-left-color: var(--success); }
+        .cupboard-item.blueprint .cupboard-commands { border-left-color: var(--accent); }
 
         .command-item {
             margin-bottom: 15px;
             padding: 10px;
             background: rgba(15, 23, 42, 0.6);
             border-radius: 8px;
-            border-left: 3px solid var(--success);
+            border-left: 3px solid;
         }
+
+        .cupboard-item.tool .command-item { border-left-color: var(--success); }
+        .cupboard-item.blueprint .command-item { border-left-color: var(--accent); }
 
         .command-item:last-child {
             margin-bottom: 0;
@@ -939,10 +1135,12 @@
 
         .command-name {
             font-weight: 700;
-            color: var(--success);
             margin-bottom: 5px;
             font-size: 14px;
         }
+
+        .cupboard-item.tool .command-name { color: var(--success); }
+        .cupboard-item.blueprint .command-name { color: var(--accent); }
 
         .command-description {
             color: var(--text-light);
@@ -2323,19 +2521,21 @@
                 margin-right: 12px;
             }
             
-            /* Deadzone, NPC e Material items - vertical em mobile */
+            /* Deadzone, NPC, Material, Sentry e Door items - vertical em mobile */
             .deadzone-item,
             .npc-item,
             .door-item-special,
             .material-item,
-            .sentry-item {
+            .sentry-item-special {
                 flex-direction: column;
                 min-height: auto;
             }
             
             .deadzone-image-container,
             .npc-image-container,
-            .door-image-container {
+            .door-image-container,
+            .material-image-container,
+            .sentry-image-container {
                 flex: 0 0 auto;
                 width: 100%;
                 padding: 25px;
@@ -2352,7 +2552,9 @@
                 height: 225px;
             }
             
-            .door-main-image {
+            .door-main-image,
+            .sentry-main-image,
+            .material-image {
                 width: 180px;
                 height: 180px;
             }
@@ -2360,8 +2562,8 @@
             .deadzone-content,
             .npc-content,
             .door-content-special,
-            .material-content,
-            .sentry-content {
+            .material-info,
+            .sentry-content-special {
                 padding: 20px;
             }
             
@@ -2369,8 +2571,19 @@
             .npc-name,
             .door-name-special,
             .material-name,
-            .sentry-name {
+            .sentry-name-special {
                 font-size: 20px;
+            }
+            
+            /* Material content - vertical em mobile */
+            .material-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            /* Cupboard section - vertical em mobile */
+            .cupboard-section {
+                flex-direction: column;
             }
             
             /* Woods grid - 1 coluna em mobile */
@@ -2450,16 +2663,19 @@
             }
             
             /* Door tools ajustado */
-            .door-tools-special {
+            .door-tools-special,
+            .sentry-craft-items {
                 gap: 12px;
             }
             
-            .door-tool-image {
+            .door-tool-image,
+            .sentry-craft-image {
                 width: 70px;
                 height: 70px;
             }
             
-            .door-tool-name {
+            .door-tool-name,
+            .sentry-craft-name {
                 font-size: 10px;
                 max-width: 70px;
             }
@@ -2600,7 +2816,8 @@
             }
             
             .deadzone-image-container,
-            .npc-image-container {
+            .npc-image-container,
+            .sentry-image-container {
                 flex: 0 0 280px;
             }
             
@@ -2612,6 +2829,12 @@
             .npc-image {
                 width: 180px;
                 height: 270px;
+            }
+            
+            .sentry-main-image,
+            .material-image {
+                width: 200px;
+                height: 200px;
             }
             
             .equipment-grid-2x2 {
@@ -2650,7 +2873,7 @@
             .npc-name,
             .door-name-special,
             .material-name,
-            .sentry-name {
+            .sentry-name-special {
                 font-size: 18px;
             }
             
@@ -2671,7 +2894,9 @@
             
             .deadzone-image-container,
             .npc-image-container,
-            .door-image-container {
+            .door-image-container,
+            .sentry-image-container,
+            .material-image-container {
                 height: 220px;
                 padding: 20px;
             }
@@ -2686,7 +2911,9 @@
                 height: 195px;
             }
             
-            .door-main-image {
+            .door-main-image,
+            .sentry-main-image,
+            .material-image {
                 width: 150px;
                 height: 150px;
             }
@@ -2708,7 +2935,8 @@
                 height: 50px;
             }
             
-            .door-tool-image {
+            .door-tool-image,
+            .sentry-craft-image {
                 width: 60px;
                 height: 60px;
             }
@@ -2750,7 +2978,9 @@
             }
             
             .deadzone-image-container,
-            .npc-image-container {
+            .npc-image-container,
+            .sentry-image-container,
+            .material-image-container {
                 height: 180px;
                 padding: 15px;
             }
@@ -2765,13 +2995,23 @@
                 height: 150px;
             }
             
+            .sentry-main-image,
+            .material-image {
+                width: 120px;
+                height: 120px;
+            }
+            
             .deadzone-content,
-            .npc-content {
+            .npc-content,
+            .sentry-content-special,
+            .material-info {
                 padding: 15px;
             }
             
             .deadzone-name,
-            .npc-name {
+            .npc-name,
+            .sentry-name-special,
+            .material-name {
                 font-size: 18px;
             }
         }
@@ -3932,7 +4172,7 @@
                     </div>
                 </div>
 
-                <!-- Materiais de Construção Avançados -->
+                <!-- Materiais de Construção Avançados - COM FOTOS -->
                 <div class="guide-section">
                     <div class="section-header construction-section-header">
                         <div class="section-icon construction-icon">
@@ -3949,29 +4189,36 @@
                         <!-- Metal -->
                         <div class="material-item metal">
                             <div class="material-content">
-                                <div class="material-header">
-                                    <h3 class="material-name">METAL</h3>
+                                <div class="material-image-container">
+                                    <div class="material-image" data-lightbox="metal" data-caption="Base de Metal - Melhor que qualquer madeira" data-type="material-image">
+                                        <img src="Fotos/metal.png" alt="Base de Metal">
+                                    </div>
                                 </div>
-                                <div class="material-description">
-                                    <p><strong>MELHOR QUE QUALQUER MADEIRA</strong></p>
-                                    <p>Primeiro upgrade após as madeiras. Oferece proteção significativamente superior e é essencial para bases intermediárias</p>
-                                    <ul>
-                                        <li>Estruturas são construídas com Metal Sheet</li>
-                                        <li>Farm fácil em Keryev</li>
-                                        <li>Durabilidade muito superior às madeiras</li>
-                                        <li>Ideal para grupos pequenos ou jogadores solos</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="craft-box">
-                                    <div class="craft-title">Recursos Necessários:</div>
-                                    <div class="craft-items">
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="scrap" data-caption="Metal Scrap - Para fazer Metal Sheet" data-type="craft-image">
-                                                <img src="Fotos/scrap.png" alt="Metal Scrap">
+                                <div class="material-info">
+                                    <div class="material-header">
+                                        <h3 class="material-name">METAL</h3>
+                                    </div>
+                                    <div class="material-description">
+                                        <p><strong>MELHOR QUE QUALQUER MADEIRA</strong></p>
+                                        <p>Primeiro upgrade após as madeiras. Oferece proteção significativamente superior e é essencial para bases intermediárias</p>
+                                        <ul>
+                                            <li>Estruturas são construídas com Metal Sheet</li>
+                                            <li>Farm fácil em Keryev</li>
+                                            <li>Durabilidade muito superior às madeiras</li>
+                                            <li>Ideal para grupos pequenos ou jogadores solos</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="craft-box">
+                                        <div class="craft-title">Recursos Necessários:</div>
+                                        <div class="craft-items">
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="scrap" data-caption="Metal Scrap - Para fazer Metal Sheet" data-type="craft-image">
+                                                    <img src="Fotos/scrap.png" alt="Metal Scrap">
+                                                </div>
+                                                <div class="craft-name">Metal Scrap</div>
+                                                <div class="craft-quantity">×2 por Metal Sheet</div>
                                             </div>
-                                            <div class="craft-name">Metal Scrap</div>
-                                            <div class="craft-quantity">×2 por Metal Sheet</div>
                                         </div>
                                     </div>
                                 </div>
@@ -3981,47 +4228,54 @@
                         <!-- Bricks -->
                         <div class="material-item bricks">
                             <div class="material-content">
-                                <div class="material-header">
-                                    <h3 class="material-name">BRICKS</h3>
+                                <div class="material-image-container">
+                                    <div class="material-image" data-lightbox="bricks" data-caption="Base de Bricks - Melhor que Metal" data-type="material-image">
+                                        <img src="Fotos/bricks.png" alt="Base de Bricks">
+                                    </div>
                                 </div>
-                                <div class="material-description">
-                                    <p><strong>MELHOR QUE METAL</strong></p>
-                                    <p>Material de construção avançado que oferece excelente proteção contra Raids convencionais</p>
-                                    <ul>
-                                        <li>Proteção superior ao metal básico</li>
-                                        <li>Mais difícil de ser destruído em Raids</li>
-                                        <li>Requer craft específico</li>
-                                        <li>Ideal para bases de clãs médios</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="craft-box">
-                                    <div class="craft-title">Craft de Bricks:</div>
-                                    <div class="craft-items">
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="scrap2" data-caption="Metal Scrap - Para fazer Bricks" data-type="craft-image">
-                                                <img src="Fotos/scrap.png" alt="Metal Scrap">
-                                            </div>
-                                            <div class="craft-name">Metal Scrap</div>
-                                            <div class="craft-quantity">×5 por Brick</div>
-                                        </div>
-                                        <div class="craft-arrow">+</div>
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="blow" data-caption="Blowtorch - Ferramenta necessária" data-type="craft-image">
-                                                <img src="Fotos/blow.png" alt="Blowtorch">
-                                            </div>
-                                            <div class="craft-name">Blowtorch</div>
-                                            <div class="craft-quantity">Não gasta</div>
-                                        </div>
-                                        <div class="craft-arrow">+</div>
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="zbricks" data-caption="Fonte de calor - Exemplo: Fogueira" data-type="craft-image">
-                                                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.9); border-radius: 8px;">
-                                                    <span style="font-size: 24px; color: var(--text);">🔥</span>
+                                <div class="material-info">
+                                    <div class="material-header">
+                                        <h3 class="material-name">BRICKS</h3>
+                                    </div>
+                                    <div class="material-description">
+                                        <p><strong>MELHOR QUE METAL</strong></p>
+                                        <p>Material de construção avançado que oferece excelente proteção contra Raids convencionais</p>
+                                        <ul>
+                                            <li>Proteção superior ao metal básico</li>
+                                            <li>Mais difícil de ser destruído em Raids</li>
+                                            <li>Requer craft específico</li>
+                                            <li>Ideal para bases de clãs médios</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="craft-box">
+                                        <div class="craft-title">Craft de Bricks:</div>
+                                        <div class="craft-items">
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="scrap2" data-caption="Metal Scrap - Para fazer Bricks" data-type="craft-image">
+                                                    <img src="Fotos/scrap.png" alt="Metal Scrap">
                                                 </div>
+                                                <div class="craft-name">Metal Scrap</div>
+                                                <div class="craft-quantity">×5 por Brick</div>
                                             </div>
-                                            <div class="craft-name">Fonte de calor</div>
-                                            <div class="craft-quantity">Ex.: Fogueira</div>
+                                            <div class="craft-arrow">+</div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="blow" data-caption="Blowtorch - Ferramenta necessária" data-type="craft-image">
+                                                    <img src="Fotos/blow.png" alt="Blowtorch">
+                                                </div>
+                                                <div class="craft-name">Blowtorch</div>
+                                                <div class="craft-quantity">Não gasta</div>
+                                            </div>
+                                            <div class="craft-arrow">+</div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="zbricks" data-caption="Fonte de calor - Exemplo: Fogueira" data-type="craft-image">
+                                                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.9); border-radius: 8px;">
+                                                        <span style="font-size: 24px; color: var(--text);">🔥</span>
+                                                    </div>
+                                                </div>
+                                                <div class="craft-name">Fonte de calor</div>
+                                                <div class="craft-quantity">Ex.: Fogueira</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -4031,74 +4285,81 @@
                         <!-- Metal Reforçado -->
                         <div class="material-item reinforced">
                             <div class="material-content">
-                                <div class="material-header">
-                                    <h3 class="material-name">METAL REFORÇADO</h3>
-                                </div>
-                                <div class="material-description">
-                                    <p><strong>MELHOR DO JOGO</strong></p>
-                                    <p>O material de construção definitivo. Extremamente resistente e difícil de ser comprometido em Raids</p>
-                                    <ul>
-                                        <li>Resistência máxima contra ataques</li>
-                                        <li>Requer uma Farm maior de recursos</li>
-                                        <li>Ideal para bases de clãs grandes</li>
-                                        <li>Dificulta significativamente os ataques de inimigos</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="craft-box">
-                                    <div class="craft-title">Requisitos por Construção Reforçada:</div>
-                                    <div class="craft-items">
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="sheetstack" data-caption="Stacked Sheet - Para construção reforçada" data-type="craft-image">
-                                                <img src="Fotos/sheetstack.png" alt="Stacked Sheet">
-                                            </div>
-                                            <div class="craft-name">Stacked Sheet</div>
-                                            <div class="craft-quantity">×2</div>
-                                        </div>
-                                        <div class="craft-arrow">+</div>
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="bag" data-caption="Cement Bag - Para construção reforçada" data-type="craft-image">
-                                                <img src="Fotos/bag.png" alt="Cement Bag">
-                                            </div>
-                                            <div class="craft-name">Cement Bag</div>
-                                            <div class="craft-quantity">×5</div>
-                                        </div>
-                                        <div class="craft-arrow">+</div>
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="sled" data-caption="Sledgehammer - Ferramenta necessária" data-type="craft-image">
-                                                <img src="Fotos/sled.png" alt="Sledgehammer">
-                                            </div>
-                                            <div class="craft-name">Sledgehammer</div>
-                                            <div class="craft-quantity">Não gasta</div>
-                                        </div>
+                                <div class="material-image-container">
+                                    <div class="material-image" data-lightbox="reinforced" data-caption="Base de Metal Reforçado - Melhor do jogo" data-type="material-image">
+                                        <img src="Fotos/reinforced.png" alt="Base de Metal Reforçado">
                                     </div>
                                 </div>
-                                
-                                <div class="craft-box" style="margin-top: 20px;">
-                                    <div class="craft-title">Recursos Por Cement Bag:</div>
-                                    <div class="craft-items">
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="zbricks2" data-caption="Bricks - Para fazer Cement Bag" data-type="craft-image">
-                                                <img src="Fotos/zbricks.png" alt="Bricks">
+                                <div class="material-info">
+                                    <div class="material-header">
+                                        <h3 class="material-name">METAL REFORÇADO</h3>
+                                    </div>
+                                    <div class="material-description">
+                                        <p><strong>MELHOR DO JOGO</strong></p>
+                                        <p>O material de construção definitivo. Extremamente resistente e difícil de ser comprometido em Raids</p>
+                                        <ul>
+                                            <li>Resistência máxima contra ataques</li>
+                                            <li>Requer uma Farm maior de recursos</li>
+                                            <li>Ideal para bases de clãs grandes</li>
+                                            <li>Dificulta significativamente os ataques de inimigos</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="craft-box">
+                                        <div class="craft-title">Requisitos por Construção Reforçada:</div>
+                                        <div class="craft-items">
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="sheetstack" data-caption="Stacked Sheet - Para construção reforçada" data-type="craft-image">
+                                                    <img src="Fotos/sheetstack.png" alt="Stacked Sheet">
+                                                </div>
+                                                <div class="craft-name">Stacked Sheet</div>
+                                                <div class="craft-quantity">×2</div>
                                             </div>
-                                            <div class="craft-name">Bricks</div>
-                                            <div class="craft-quantity">×2</div>
+                                            <div class="craft-arrow">+</div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="bag" data-caption="Cement Bag - Para construção reforçada" data-type="craft-image">
+                                                    <img src="Fotos/bag.png" alt="Cement Bag">
+                                                </div>
+                                                <div class="craft-name">Cement Bag</div>
+                                                <div class="craft-quantity">×5</div>
+                                            </div>
+                                            <div class="craft-arrow">+</div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="sled" data-caption="Sledgehammer - Ferramenta necessária" data-type="craft-image">
+                                                    <img src="Fotos/sled.png" alt="Sledgehammer">
+                                                </div>
+                                                <div class="craft-name">Sledgehammer</div>
+                                                <div class="craft-quantity">Não gasta</div>
+                                            </div>
                                         </div>
-                                        <div class="craft-arrow">+</div>
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="Cloth" data-caption="Cloth - Para fazer Cement Bag" data-type="craft-image">
-                                                <img src="Fotos/cloth.png" alt="Cloth">
+                                    </div>
+                                    
+                                    <div class="craft-box" style="margin-top: 20px;">
+                                        <div class="craft-title">Recursos Por Cement Bag:</div>
+                                        <div class="craft-items">
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="zbricks2" data-caption="Bricks - Para fazer Cement Bag" data-type="craft-image">
+                                                    <img src="Fotos/zbricks.png" alt="Bricks">
+                                                </div>
+                                                <div class="craft-name">Bricks</div>
+                                                <div class="craft-quantity">×2</div>
                                             </div>
-                                            <div class="craft-name">Cloth</div>
-                                            <div class="craft-quantity">×5</div>
-                                        </div>
-                                        <div class="craft-arrow">+</div>
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="sled2" data-caption="Sledgehammer - Ferramenta necessária" data-type="craft-image">
-                                                <img src="Fotos/sled.png" alt="Sledgehammer">
+                                            <div class="craft-arrow">+</div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="Cloth" data-caption="Cloth - Para fazer Cement Bag" data-type="craft-image">
+                                                    <img src="Fotos/cloth.png" alt="Cloth">
+                                                </div>
+                                                <div class="craft-name">Cloth</div>
+                                                <div class="craft-quantity">×5</div>
                                             </div>
-                                            <div class="craft-name">Sledgehammer</div>
-                                            <div class="craft-quantity">Não gasta</div>
+                                            <div class="craft-arrow">+</div>
+                                            <div class="craft-item">
+                                                <div class="craft-image" data-lightbox="sled2" data-caption="Sledgehammer - Ferramenta necessária" data-type="craft-image">
+                                                    <img src="Fotos/sled.png" alt="Sledgehammer">
+                                                </div>
+                                                <div class="craft-name">Sledgehammer</div>
+                                                <div class="craft-quantity">Não gasta</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -4139,7 +4400,7 @@
                             </div>
                             <div class="tool-name">Sledgehammer</div>
                             <div class="tool-description">
-                                Ferramenta pesada essencial para construção com materiais avançados. Necessária para criar estruturas de metal reforçado
+                                Ferramenta essencial para construção com materiais avançados. Necessária para criar estruturas de metal reforçado
                             </div>
                         </div>
                         
@@ -4165,54 +4426,58 @@
                     </div>
                 </div>
 
-                <!-- Sentries -->
+                <!-- Sentries - NOVO LAYOUT -->
                 <div class="guide-section">
                     <div class="section-header construction-section-header">
                         <div class="section-icon construction-icon">
                             <i class="fas fa-crosshairs"></i>
                         </div>
-                        <h2 class="section-title">Sistema de Sentries</h2>
+                        <h2 class="section-title">Sentries</h2>
                     </div>
                     
                     <p style="color: var(--text-light); font-size: 16px; margin-bottom: 25px; line-height: 1.6;">
-                        Todas as sentries são feitas com <strong>Rangefinder</strong>. Protegem sua base
+                        Todas as sentries são feitas com <strong>Rangefinder</strong>. Protegem sua base contra invasores
                     </p>
                     
-                    <div class="sentries-list">
-                        <!-- Sentries Básicas -->
-                        <div class="sentry-item">
-                            <div class="sentry-content">
-                                <div class="sentry-header">
-                                    <h3 class="sentry-name">SENTRIES BÁSICAS</h3>
+                    <div class="sentry-list-special">
+                        <!-- Sentry Básica -->
+                        <div class="sentry-item-special basic">
+                            <div class="sentry-image-container">
+                                <div class="sentry-main-image" data-lightbox="sentryh" data-caption="Sentry Básica - Hostile, Neutral e Friendly" data-type="sentry-image">
+                                    <img src="Fotos/sentryh.png" alt="Sentry Básica">
                                 </div>
-                                <div class="sentry-description">
-                                    <p>As três sentries básicas são essencialmente a mesma, só mudam a cor. Use <strong>Blowtorch</strong> para alternar entre elas</p>
+                            </div>
+                            <div class="sentry-content-special">
+                                <div class="sentry-name-special">SENTRIES BÁSICAS</div>
+                                <div class="sentry-description-special">
+                                    <p>As três sentries básicas são essencialmente a mesma. Mudam a cor e a funcionalidade. Use <strong>Blowtorch</strong> para alternar entre elas</p>
                                     <ul>
                                         <li><strong>Hostile Sentry:</strong> Atira em tudo que se move - a mais útil</li>
                                         <li><strong>Neutral Sentry:</strong> Não atira em jogadores com braços levantados</li>
                                         <li><strong>Friendly Sentry:</strong> Só atira em quem equipa algum item</li>
                                     </ul>
-                                    <div class="craft-items" style="margin-top: 20px;">
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="sentryh" data-caption="Sentry Hostile - Atira em tudo" data-type="craft-image">
-                                                <img src="Fotos/sentryh.png" alt="Sentry Hostile">
+                                </div>
+                                
+                                <div class="sentry-craft-container">
+                                    <div class="sentry-craft-title">Tipos Básicos:</div>
+                                    <div class="sentry-craft-items">
+                                        <div class="sentry-craft-item">
+                                            <div class="sentry-craft-image" data-lightbox="sentryh" data-caption="Hostile Sentry - Atira em tudo" data-type="craft-image">
+                                                <img src="Fotos/sentryh.png" alt="Hostile Sentry">
                                             </div>
-                                            <div class="craft-name">Hostile</div>
-                                            <div class="craft-name">Sentry</div>
+                                            <div class="sentry-craft-name">Hostile</div>
                                         </div>
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="sentryn" data-caption="Sentry Neutral - Só atira em hostis" data-type="craft-image">
+                                        <div class="sentry-craft-item">
+                                            <div class="sentry-craft-image" data-lightbox="sentryn" data-caption="Sentry Neutral - Só atira em hostis" data-type="craft-image">
                                                 <img src="Fotos/sentryn.png" alt="Sentry Neutral">
                                             </div>
-                                            <div class="craft-name">Neutral</div>
-                                            <div class="craft-name">Sentry</div>
+                                            <div class="sentry-craft-name">Neutral</div>
                                         </div>
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="sentryf" data-caption="Sentry Friendly - Só atira em quem equipa item" data-type="craft-image">
+                                        <div class="sentry-craft-item">
+                                            <div class="sentry-craft-image" data-lightbox="sentryf" data-caption="Sentry Friendly - Só atira em quem equipa item" data-type="craft-image">
                                                 <img src="Fotos/sentryf.png" alt="Sentry Friendly">
                                             </div>
-                                            <div class="craft-name">Friendly</div>
-                                            <div class="craft-name">Sentry</div>
+                                            <div class="sentry-craft-name">Friendly</div>
                                         </div>
                                     </div>
                                 </div>
@@ -4220,125 +4485,124 @@
                         </div>
                         
                         <!-- Sentry Reforçada -->
-                        <div class="sentry-item">
-                            <div class="sentry-content">
-                                <div class="sentry-header">
-                                    <h3 class="sentry-name">SENTRY REFORÇADA</h3>
+                        <div class="sentry-item-special heavy">
+                            <div class="sentry-image-container">
+                                <div class="sentry-main-image" data-lightbox="sentryhe" data-caption="Sentry Reforçada - Muito mais vida que a normal" data-type="sentry-image">
+                                    <img src="Fotos/sentryhe2.png" alt="Sentry Reforçada">
                                 </div>
-                                <div class="sentry-description">
-                                    <p><strong>Muito mais vida que a normal</strong>. Feita a partir de uma Sentry Hostile</p>
+                            </div>
+                            <div class="sentry-content-special">
+                                <div class="sentry-name-special">SENTRY REFORÇADA</div>
+                                <div class="sentry-description-special">
+                                    <p><strong>Muito mais vida que a normal</strong>. Feita a partir de uma Hostile Sentry</p>
                                     <ul>
-                                        <li>Requer uma Sentry Hostile + 2 Stacks de Metal Sheet + Blowtorch</li>
+                                        <li>Requer uma Hostile Sentry</li>
                                         <li>Resistência muito superior às normais</li>
-                                        <li>Ideal para defesa de bases importantes</li>
+                                        <li>Ideal para defesa de bases maiores</li>
                                     </ul>
-                                    <div class="craft-items" style="margin-top: 20px;">
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="sentryhe" data-caption="Sentry Heavy - Muito mais vida" data-type="craft-image">
-                                                <img src="Fotos/sentryhe.png" alt="Sentry Heavy">
+                                </div>
+                                
+                                <div class="sentry-craft-container">
+                                    <div class="sentry-craft-title">Craft da Sentry Reforçada:</div>
+                                    <div class="sentry-craft-items">
+                                        <div class="sentry-craft-item">
+                                            <div class="sentry-craft-image" data-lightbox="sentryh2" data-caption="Hostile Sentry - Base para a reforçada" data-type="craft-image">
+                                                <img src="Fotos/sentryh.png" alt="Hostile Sentry">
                                             </div>
-                                            <div class="craft-name">Heavy</div>
-                                            <div class="craft-name">Sentry</div>
+                                            <div class="sentry-craft-name">Hostile Sentry</div>
+                                            <div class="craft-quantity">×1</div>
                                         </div>
+                                        <div class="craft-arrow">+</div>
+                                            <div class="sentry-craft-item">
+                                                <div class="sentry-craft-image" data-lightbox="sheetstack" data-caption="Stacked Sheet - Para construção reforçada" data-type="craft-image">
+                                                    <img src="Fotos/sheetstack.png" alt="Stacked Sheet">
+                                                </div>
+                                                <div class="sentry-craft-name">Stacked Sheet</div>
+                                            <div class="craft-quantity">×2</div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Sentry Autocannon -->
-                        <div class="sentry-item">
-                            <div class="sentry-content">
-                                <div class="sentry-header">
-                                    <h3 class="sentry-name">SENTRY AUTOCANNON</h3>
+                        <div class="sentry-item-special autocannon">
+                            <div class="sentry-image-container">
+                                <div class="sentry-main-image" data-lightbox="sentryca" data-caption="Sentry Autocannon - Suporta armas pesadas" data-type="sentry-image">
+                                    <img src="Fotos/sentryca2.png" alt="Sentry Autocannon">
                                 </div>
-                                <div class="sentry-description">
-                                    <p><strong>Encontrada apenas em locais militares e Deadzones</strong>. Tem espaço para Minigun ou Autocannon</p>
+                            </div>
+                            <div class="sentry-content-special">
+                                <div class="sentry-name-special">SENTRY AUTOCANNON</div>
+                                <div class="sentry-description-special">
+                                    <p><strong>Encontrada apenas em locais militares e Deadzones</strong>. Tem espaço para uma Minigun ou um Autocannon</p>
                                     <ul>
-                                        <li>Menos vida que a Reforçada, mas suporta armas pesadas</li>
-                                        <li>Autocannon mata com 2 tiros, dano em área, munição infinita</li>
-                                        <li>Montagem do Autocannon requer vários componentes especiais</li>
+                                        <li>Menos vida que a Reforçada, mas suporta armas maiores</li>
+                                        <li>Autocannon mata com 2 tiros, tem dano em área e munição infinita</li>
+                                        <li>Montagem do Autocannon requer vários componentes especiais, encontrados em zonas militares</li>
+                                        <li>Ideal para defesa de qualquer base</li>
                                     </ul>
-                                    <div class="craft-box" style="margin-top: 20px; border-left-color: var(--danger);">
-                                        <div class="craft-items">
-                                            <div class="craft-item">
-                                                <div class="craft-image" data-lightbox="sentryca" data-caption="Autocannon Body - Corpo da sentry" data-type="craft-image">
-                                                    <img src="Fotos/sentryca.png" alt="Autocannon Body">
-                                                </div>
-                                                <div class="craft-name">Autocannon Body</div>
+                                </div>
+                                
+                                <div class="sentry-craft-container">
+                                    <div class="sentry-craft-title">Componentes do Autocannon:</div>
+                                    <div class="sentry-craft-items">
+                                        <div class="sentry-craft-item">
+                                            <div class="sentry-craft-image" data-lightbox="cabody" data-caption="Autocannon Body - Corpo principal" data-type="craft-image">
+                                                <img src="Fotos/cabody.png" alt="Autocannon Body">
                                             </div>
-                                            <div class="craft-item">
-                                                <div class="craft-image" data-lightbox="autoca" data-caption="Autocannon Box - Caixa da arma" data-type="craft-image">
-                                                    <img src="Fotos/autoca.png" alt="Autocannon Box">
-                                                </div>
-                                                <div class="craft-name">Autocannon Box</div>
-                                            </div>
+                                            <div class="sentry-craft-name">Autocannon Body</div>
+                                            <div class="craft-quantity">×1</div>
                                         </div>
-                                    </div>
-                                    <div class="craft-box" style="margin-top: 20px; border-left-color: var(--danger);">
-                                        <div class="craft-title" style="color: var(--danger);">Craft do Autocannon:</div>
-                                        <div class="craft-items">
-                                            <div class="craft-item">
-                                                <div class="craft-image" data-lightbox="cabody" data-caption="Autocannon Body - Corpo principal" data-type="craft-image">
-                                                    <img src="Fotos/cabody.png" alt="Autocannon Body">
-                                                </div>
-                                                <div class="craft-name">Autocannon Body</div>
+                                        <div class="craft-arrow">+</div>
+                                        <div class="sentry-craft-item">
+                                            <div class="sentry-craft-image" data-lightbox="cabox" data-caption="Autocannon Box - Caixa da arma" data-type="craft-image">
+                                                <img src="Fotos/cabox.png" alt="Autocannon Box">
                                             </div>
-                                            <div class="craft-arrow">+</div>
-                                            <div class="craft-item">
-                                                <div class="craft-image" data-lightbox="cabox" data-caption="Autocannon Box - Caixa da arma" data-type="craft-image">
-                                                    <img src="Fotos/cabox.png" alt="Autocannon Box">
-                                                </div>
-                                                <div class="craft-name">Autocannon Box</div>
+                                            <div class="sentry-craft-name">Autocannon Box</div>
+                                            <div class="craft-quantity">×1</div>
+                                        </div>
+                                        <div class="craft-arrow">+</div>
+                                        <div class="sentry-craft-item">
+                                            <div class="sentry-craft-image" data-lightbox="laser" data-caption="Tactical Laser - Para mira" data-type="craft-image">
+                                                <img src="Fotos/laser.png" alt="Tactical Laser">
                                             </div>
-                                            <div class="craft-arrow">+</div>
-                                            <div class="craft-item">
-                                                <div class="craft-image" data-lightbox="laser" data-caption="Tactical Laser - Para mira" data-type="craft-image">
-                                                    <img src="Fotos/laser.png" alt="Tactical Laser">
-                                                </div>
-                                                <div class="craft-name">Tactical Laser</div>
-                                            </div>
-                                            <div class="craft-arrow">+</div>
-                                            <div class="craft-item">
-                                                <div class="craft-image" data-lightbox="scrap3" data-caption="Metal Scrap - Para montagem" data-type="craft-image">
-                                                    <img src="Fotos/scrap.png" alt="Metal Scrap">
-                                                </div>
-                                                <div class="craft-name">Metal Scrap</div>
-                                                <div class="craft-quantity">×10</div>
-                                            </div>
-                                            <div class="craft-arrow">+</div>
-                                            <div class="craft-item">
-                                                <div class="craft-image" data-lightbox="blow3" data-caption="Blowtorch - Para montagem" data-type="craft-image">
-                                                    <img src="Fotos/blow.png" alt="Blowtorch">
-                                                </div>
-                                                <div class="craft-name">Blowtorch</div>
-                                            </div>
+                                            <div class="sentry-craft-name">Tactical</div>
+                                            <div class="sentry-craft-name">Laser</div>
+                                            <div class="craft-quantity">×1</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Sentry UFO -->
-                        <div class="sentry-item">
-                            <div class="sentry-content">
-                                <div class="sentry-header">
-                                    <h3 class="sentry-name">SENTRY UFO</h3>
+                        <!-- MINI UFO SENTRY -->
+                        <div class="sentry-item-special ufo">
+                            <div class="sentry-image-container">
+                                <div class="sentry-main-image" data-lightbox="ufos" data-caption="MINI UFO SENTRY - Melhor sentry do jogo" data-type="sentry-image">
+                                    <img src="Fotos/ufos.png" alt="MINI UFO SENTRY">
                                 </div>
-                                <div class="sentry-description">
-                                    <p><strong>Item de missão do Dobs</strong>. Desbloqueada após pegar a blueprint e completar a missão final</p>
+                            </div>
+                            <div class="sentry-content-special">
+                                <div class="sentry-name-special">MINI UFO SENTRY</div>
+                                <div class="sentry-description-special">
+                                    <p><strong>Item de missão do Dobs</strong>. Desbloqueada após completar a missão final</p>
                                     <ul>
                                         <li>Fornece munição infinita para qualquer arma colocada nela</li>
-                                        <li>Blueprint avançada (não mostrarei craft aqui)</li>
                                         <li>Melhor sentry do jogo</li>
+                                        <li>Resistência máxima</li>
+                                        <li>Pode ser personalizada com skins especiais</li>
                                     </ul>
-                                    <div class="craft-items" style="margin-top: 20px;">
-                                        <div class="craft-item">
-                                            <div class="craft-image" data-lightbox="ufos" data-caption="Sentry UFO - Melhor sentry do jogo" data-type="craft-image">
-                                                <img src="Fotos/ufos.png" alt="Sentry UFO">
-                                            </div>
-                                            <div class="craft-name">Sentry UFO</div>
-                                        </div>
-                                    </div>
+                                </div>
+                                
+                                <div class="sentry-craft-container">
+                                    <div class="sentry-craft-title">Como Obter:</div>
+                                    <p style="color: var(--text-light); font-size: 14px; margin-top: 5px;">
+                                        Complete todas as missões do NPC Dobs no Liberator para desbloquear a MINI UFO SENTRY
+                                    </p>
+                                    <p style="color: var(--text-light); font-size: 14px; margin-top: 5px;">
+                                        É uma recompensa exclusiva da missão final
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -4441,25 +4705,26 @@
                     </div>
                 </div>
 
-                <!-- Tool Cupboard -->
+                <!-- Tool Cupboard & Structure Blueprint - NOVO LAYOUT -->
                 <div class="guide-section">
                     <div class="section-header construction-section-header">
                         <div class="section-icon construction-icon">
                             <i class="fas fa-home"></i>
                         </div>
-                        <h2 class="section-title">Tool Cupboard</h2>
+                        <h2 class="section-title">Tool Cupboard & Structure Blueprint</h2>
                     </div>
                     
-                    <div class="cupboard-content">
-                        <div class="cupboard-image-container">
-                            <div class="cupboard-image" data-lightbox="cup" data-caption="Tool Cupboard - Ativa a proteção da base" data-type="cupboard-image">
-                                <img src="Fotos/cup.png" alt="Tool Cupboard">
+                    <div class="cupboard-section">
+                        <!-- Tool Cupboard -->
+                        <div class="cupboard-item tool">
+                            <div class="cupboard-image-container">
+                                <div class="cupboard-image" data-lightbox="cup" data-caption="Tool Cupboard - Ativa a proteção da base" data-type="cupboard-image">
+                                    <img src="Fotos/cup.png" alt="Tool Cupboard">
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="cupboard-info">
-                            <h3 style="color: var(--success); font-size: 22px; margin-bottom: 15px;">Como Ativar a Proteção</h3>
-                            <div class="sentry-description">
+                            
+                            <h3 class="cupboard-title">Tool Cupboard</h3>
+                            <div class="cupboard-description">
                                 <p>Para que sua base fique protegida contra Raids e decay, é necessário colocar um <strong>Tool Cupboard</strong> em sua base</p>
                                 <ul>
                                     <li>Use <code>/kit Base</code> para receber um Tool Cupboard</li>
@@ -4467,16 +4732,52 @@
                                     <li>Mantenha-o para garantir os benefícios da Proteção de Raid</li>
                                     <li>Ele evita que sua base desapareça com o Decay</li>
                                 </ul>
+                            </div>
+                            
+                            <div class="cupboard-commands">
+                                <div class="command-item">
+                                    <div class="command-name">Comando: <code>/cl</code></div>
+                                    <div class="command-description">Veja seus limites de Tool Cupboards</div>
+                                </div>
                                 
-                                <div class="cupboard-commands">
-                                    <div class="command-item">
-                                        <div class="command-name">Comando: <code>/cl</code></div>
-                                        <div class="command-description">Veja seus limites de Tool Cupboards</div>
+                                <div class="command-item">
+                                    <div class="command-name">Comando: <code>/destroy Tool</code></div>
+                                    <div class="command-description">Destroi todos os seus Tool Cupboards (volta para inventário!)</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Structure Blueprint -->
+                        <div class="cupboard-item blueprint">
+                            <div class="cupboard-image-container">
+                                <div class="cupboard-image" data-lightbox="blueprint" data-caption="Structure Blueprint - Ajuda na construção" data-type="cupboard-image">
+                                    <img src="Fotos/blueprint.png" alt="Structure Blueprint">
+                                </div>
+                            </div>
+                            
+                            <h3 class="cupboard-title">Structure Blueprint</h3>
+                            <div class="cupboard-description">
+                                <p>O <strong>Structure Blueprint</strong> é uma ferramenta essencial que vem no kit base e ajuda a construir/desconstruir estruturas mais rapidamente</p>
+                                <ul>
+                                    <li>Acelera o processo de construção</li>
+                                    <li>Facilita a desconstrução de estruturas</li>
+                                    <li>Mostra pré-visualização das construções</li>
+                                    <li>Indica recursos necessários em tempo real</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="cupboard-commands">
+                                <div class="command-item">
+                                    <div class="command-name">Como Usar:</div>
+                                    <div class="command-description">
+                                        Equipe o Structure Blueprint e aponte para onde quer construir. Segure (T) para navegar entre as estruturas
                                     </div>
-                                    
-                                    <div class="command-item">
-                                        <div class="command-name">Comando: <code>/destroy Tool</code></div>
-                                        <div class="command-description">Destroi todos os seus Tool Cupboards (volta para inventário!)</div>
+                                </div>
+                                
+                                <div class="command-item">
+                                    <div class="command-name">Dica Importante:</div>
+                                    <div class="command-description">
+                                        Mantenha o Structure Blueprint sempre no seu inventário
                                     </div>
                                 </div>
                             </div>
@@ -4540,10 +4841,25 @@
                             <h3 class="tip-title">Gestão de Horários</h3>
                             <div class="tip-content">
                                 <ul>
-                                    <li><strong>Logins:</strong> Priorize horário noturno (00:00-13:00)</li>
-                                    <li><strong>Farm noturno:</strong> Mais segurança com proteção 100%</li>
+                                    <li><strong>Logins:</strong> Fique atento com os horários de proteção</li>
+                                    <li><strong>Farm noturno:</strong> Mais segurança com proteção 100%, após desconexão, ativa depois de 5 minutos</li>
                                     <li><strong>Rotação:</strong> Em grupos grandes, faça rodízio</li>
                                     <li><strong>Ausências:</strong> Avise seu grupo se for ficar offline</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-house"></i>
+                            </div>
+                            <h3 class="tip-title">Proteção da Base</h3>
+                            <div class="tip-content">
+                                <ul>
+                                    <li><strong>Sentries:</strong> Coloque Sentries em todos os comodos</li>
+                                    <li><strong>Investimento:</strong> Invista o quanto achar que for necessário para proteger sua base. Lembre-se do fato de proteção!</li>
+                                    <li><strong>Alerta de Raid:</strong> Verifique se seus alertas de raid estão ativados no Discord</li>
+                                    <li><strong>Loot:</strong> Mantenha seu loot espalhado pela base, dificulte o raid. Não coloque tudo junto!</li>
                                 </ul>
                             </div>
                         </div>
@@ -4566,6 +4882,15 @@
                     </div>
                     <div class="alert-content">
                         <strong>LEMBRETE:</strong> Durante o dia (13:00-00:00), a proteção do grupo só ativa após <strong>15 minutos offline</strong>. Durante a noite (00:00-13:00), a proteção 100% ativa após <strong>5 minutos offline</strong>
+                    </div>
+                </div>
+
+                <div class="alert alert-success mt-20">
+                    <div class="alert-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="alert-content">
+                        <strong>DICA FINAL:</strong> Use o <strong>Structure Blueprint</strong> sempre que for construir, e ele economiza mais tempo do que imagina!
                     </div>
                 </div>
             </div>
@@ -4829,7 +5154,7 @@
 
         // Sistema de Atualização Automática
         function initAutoUpdate() {
-            const VERSION = '2.1.0'; // Atualize esta versão quando fizer mudanças
+            const VERSION = '2.2.0'; // Atualize esta versão quando fizer mudanças
             const CHECK_INTERVAL = 5 * 60 * 1000; // 5 minutos
             
             // Verificar atualizações
